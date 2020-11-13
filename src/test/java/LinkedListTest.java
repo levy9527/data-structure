@@ -67,7 +67,7 @@ class LinkedListTest {
   @Test
   void insert() {
     linkedList.insert(0, new Integer(1));
-    linkedList.insert(0, new Integer(0));
+    linkedList.insert(-1, new Integer(0));
     linkedList.insert(3, new Integer(2));
 
     assertEquals(3, linkedList.size());
