@@ -31,9 +31,8 @@ public class LinkedList<T> implements List<T>{
 
     // 负数也行，默认是在头插入
     if (index <= 0) {
-      Node q = head.next;
+      e.next = head.next;
       head.next = e;
-      e.next = q;
       return true;
     }
 
@@ -42,9 +41,8 @@ public class LinkedList<T> implements List<T>{
 
     while (p.next != null) {
       if (i == index) {
-        Node q = p.next;
+        e.next = p.next;
         p.next = e;
-        e.next = q;
         break;
       }
       p = p.next;
