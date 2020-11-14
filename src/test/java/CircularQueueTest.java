@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CircularQueueTest {
 
   @Test
-  @DisplayName("enqueue/dequeue/head/size")
+  @DisplayName("enqueue/dequeue/head/size/toString")
   void test(){
     Queue<Integer> queue = new CircularQueue<>(3);
 
