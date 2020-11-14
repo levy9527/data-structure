@@ -3,6 +3,8 @@ public interface Stack<T> {
 
   T pop();
 
+  T peek();
+
   int size();
 
   T[] toArray();

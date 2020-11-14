@@ -16,6 +16,11 @@ public class LinkedStack<T> implements Stack<T>{
   }
 
   @Override
+  public T peek() {
+    return list.get(0);
+  }
+
+  @Override
   public int size() {
     return list.size();
   }

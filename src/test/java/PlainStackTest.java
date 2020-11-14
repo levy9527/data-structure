@@ -25,6 +25,8 @@ class PlainStackTest {
     assertEquals(2, stack.size());
     assertEquals("[2, 1]", Arrays.toString(stack.toArray()));
 
+    assertEquals(2, stack.peek());
+    assertEquals(2, stack.size());
   }
 
 }

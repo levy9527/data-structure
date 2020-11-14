@@ -34,6 +34,13 @@ public class PlainStack<T> implements Stack<T>{
   }
 
   @Override
+  public T peek() {
+    if (top < 1) return null;
+
+    return array[top - 1];
+  }
+
+  @Override
   public int size() {
     return this.top;
   }

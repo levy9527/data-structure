@@ -16,6 +16,11 @@ public class ArrayStack<T> implements Stack<T>{
   }
 
   @Override
+  public T peek() {
+    return list.get(list.size() - 1);
+  }
+
+  @Override
   public int size() {
     return list.size();
   }

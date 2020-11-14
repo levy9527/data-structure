@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayStackTest {
   @Test
-  @DisplayName("push/pop/size/toArray")
+  @DisplayName("push/pop/size/toArray/peek")
   void push() {
     Stack<Integer> stack = new ArrayStack<>(3);
 
@@ -22,6 +22,9 @@ class ArrayStackTest {
     assertEquals(3, stack.pop());
     assertEquals(2, stack.size());
     assertEquals("[2, 1]", Arrays.toString(stack.toArray()));
+
+    assertEquals(2, stack.peek());
+    assertEquals(2, stack.size());
   }
 
 }

@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LinkedStackTest {
 
   @Test
-  @DisplayName("push/pop/size/toArray")
+  @DisplayName("push/pop/size/toArray/peek")
   void push() {
     Stack<Integer> stack = new LinkedStack<>();
 
@@ -23,6 +23,9 @@ class LinkedStackTest {
     assertEquals(4, stack.pop());
     assertEquals(3, stack.size());
     assertEquals("[3, 2, 1]", Arrays.toString(stack.toArray()));
+
+    assertEquals(3, stack.peek());
+    assertEquals(3, stack.size());
   }
 
 }
