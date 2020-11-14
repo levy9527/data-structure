@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 /**
- * 普通数组实现的队列，由于出队列形成的空位，会导致有移动整个数组操作，有一定开销
+ * 顺序队列，使用移动数组来解决“假溢出”问题，有一定开销
  * @param <T>
  */
 public class PlainQueue<T> implements Queue<T>{

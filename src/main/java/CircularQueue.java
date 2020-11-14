@@ -1,6 +1,10 @@
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * 循环队列，解决“假溢出”问题不需要移动数组，效率高
+ * @param <T>
+ */
 public class CircularQueue<T> implements Queue<T>{
   private T[] array;
   private int capacity;
