@@ -3,7 +3,7 @@ public interface List<T> {
 
   boolean insert(int index, T element);
 
-  boolean remove(int index);
+  T remove(int index);
 
   boolean set(int index, T element);
 
@@ -13,6 +13,6 @@ public interface List<T> {
 
   boolean contains(T element);
 
-  public T[] toArray();
+  T[] toArray();
 
 }

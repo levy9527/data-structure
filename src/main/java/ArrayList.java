@@ -1,6 +1,10 @@
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * 还是存在一些问题，有些方法返回的是引用，而不是对象的拷贝
+ * @param <T>
+ */
 public class ArrayList<T> implements List<T>{
   private int capacity;
   private int size = 0;
@@ -39,15 +43,19 @@ public class ArrayList<T> implements List<T>{
   }
 
   @Override
-  public boolean remove(int index) {
-    if (index < 0 || index >= this.size) return false;
+  public T remove(int index) {
+    if (index < 0 || index >= this.size) return null;
+
+    T result = this.array[index];
 
     for(int i = index; i < this.size - 1; i++) {
       this.array[i] = this.array[i+1];
     }
+
     this.array[size - 1] = null;
     this.size--;
-    return true;
+
+    return result;
   }
 
   /**

@@ -59,21 +59,20 @@ public class LinkedList<T> implements List<T>{
   }
 
   @Override
-  public boolean remove(int index) {
-    if (index < 0) return false;
-    //  节省一次遍历
+  public T remove(int index) {
+    if (index < 0) return null;
+    //  节省一次遍历，具体原因看下一个注释
 //    if (index >= this.size()) return false;
 
-    boolean result = false;
+    T result = null;
     Node p = head;
     int i = 0;
 
     while (p.next != null) {
       // 如果入参 index > this.size()，则 i 永远不会等于 index
       if (i == index) {
+        result = p.next.data;
         p.next = p.next.next;
-
-        result = true;
         break;
       }
       p = p.next;
@@ -83,15 +82,15 @@ public class LinkedList<T> implements List<T>{
     return result;
   }
 
-  public boolean remove(T element) {
-    boolean result = false;
+  public T remove(T element) {
+    T result = null;
     Node p = head;
 
     while (p.next != null) {
       if (p.next.data.equals(element)) {
         p.next = p.next.next;
 
-        result = true;
+        result = element;
         break;
       }
       p = p.next;

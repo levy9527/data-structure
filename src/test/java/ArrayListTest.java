@@ -66,9 +66,9 @@ class ArrayListTest {
   @Test
   @Order(4)
   void remove() {
-    arrayList.remove(-1);
-    arrayList.remove(11);
-    arrayList.remove(5);
+    assertNull(arrayList.remove(-1));
+    assertNull(arrayList.remove(11));
+    assertNull(arrayList.remove(5));
     assertEquals(1, arrayList.size());
 
     arrayList.remove(0);
@@ -80,7 +80,7 @@ class ArrayListTest {
     arrayList.add(1);
     arrayList.add(2);
     arrayList.add(3);
-    arrayList.remove(1);
+    assertEquals(2, arrayList.remove(1));
 
     assertEquals(3, arrayList.get(1));
     assertNull(arrayList.get(2));

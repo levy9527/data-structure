@@ -51,13 +51,13 @@ class LinkedListTest {
     linkedList.add(0);
     linkedList.add(1);
 
-    assertFalse(linkedList.remove(-1));
-    assertFalse(linkedList.remove(2));
-    assertTrue(linkedList.remove(1));
+    assertNull(linkedList.remove(-1));
+    assertNull(linkedList.remove(2));
+    assertEquals(1, linkedList.remove(1));
     assertEquals(1, linkedList.size());
     assertEquals(0,linkedList.get(0));
 
-    assertTrue(linkedList.remove(0));
+    assertEquals(0, linkedList.remove(0));
     assertEquals(0, linkedList.size());
     assertNull(linkedList.get(0));
     assertNull(linkedList.get(1));
