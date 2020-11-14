@@ -1,3 +1,7 @@
+/**
+ * 链表的操作技巧是：先对新增节点设置好指针去向
+ * @param <T>
+ */
 public class LinkedList<T> implements List<T>{
   private Node head = new Node(null);
 
