@@ -17,14 +17,14 @@ class LinkedListTest {
   @Test
   @DisplayName("add/size/toArray/contains")
   void test() {
-    assertFalse(linkedList.contains(new Integer(1)));
+    assertFalse(linkedList.contains(1));
     assertNull(linkedList.get(0));
     assertNull(linkedList.get(1));
 
     // side effect
-    linkedList.add(new Integer(1));
+    linkedList.add(1);
 
-    assertTrue(linkedList.contains(new Integer(1)));
+    assertTrue(linkedList.contains(1));
     assertEquals("[1]", Arrays.toString(linkedList.toArray()));
     assertEquals(1, linkedList.size());
 
@@ -33,14 +33,14 @@ class LinkedListTest {
   @Test
   @DisplayName("set/get")
   void test2() {
-    linkedList.add(new Integer(1));
+    linkedList.add(1);
 
     assertEquals(1, linkedList.get(0));
 
     // side effect
-    assertFalse(linkedList.set(-1, new Integer(2)));
-    assertTrue(linkedList.set(0, new Integer(0)));
-    assertFalse(linkedList.set(1, new Integer(1)));
+    assertFalse(linkedList.set(-1, 2));
+    assertTrue(linkedList.set(0, 0));
+    assertFalse(linkedList.set(1, 1));
 
     assertEquals(1, linkedList.size());
     assertEquals(0, linkedList.get(0));
@@ -48,8 +48,8 @@ class LinkedListTest {
 
   @Test
   void remove() {
-    linkedList.add(new Integer(0));
-    linkedList.add(new Integer(1));
+    linkedList.add(0);
+    linkedList.add(1);
 
     assertFalse(linkedList.remove(-1));
     assertFalse(linkedList.remove(2));
@@ -57,7 +57,7 @@ class LinkedListTest {
     assertEquals(1, linkedList.size());
     assertEquals(0,linkedList.get(0));
 
-    assertTrue(linkedList.remove(new Integer(0)));
+    assertTrue(linkedList.remove(0));
     assertEquals(0, linkedList.size());
     assertNull(linkedList.get(0));
     assertNull(linkedList.get(1));
@@ -66,9 +66,9 @@ class LinkedListTest {
 
   @Test
   void insert() {
-    linkedList.insert(0, new Integer(1));
-    linkedList.insert(-1, new Integer(0));
-    linkedList.insert(3, new Integer(2));
+    linkedList.insert(0, 1);
+    linkedList.insert(-1, 0);
+    linkedList.insert(3, 2);
 
     assertEquals(3, linkedList.size());
     assertEquals("[0, 1, 2]", Arrays.toString(linkedList.toArray()));
