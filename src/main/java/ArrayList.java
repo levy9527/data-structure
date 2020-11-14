@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Objects;
 
 public class ArrayList<T> implements List<T>{
@@ -93,6 +94,6 @@ public class ArrayList<T> implements List<T>{
 
   @Override
   public T[] toArray() {
-    return this.array;
+    return Arrays.copyOf(this.array, this.size());
   }
 }

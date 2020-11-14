@@ -23,7 +23,7 @@ class ArrayListTest {
   @Order(1)
   void test() {
     assertEquals(1, arrayList.size());
-    assertEquals(new String("[1, null, null, null, null]"),Arrays.toString(arrayList.toArray()) );
+    assertEquals(new String("[1]"),Arrays.toString(arrayList.toArray()) );
 
   }
 
@@ -95,7 +95,7 @@ class ArrayListTest {
     arrayList.insert(2, new Integer(2));
 
     assertEquals(4, arrayList.size());
-    assertEquals(new String("[0, 1, 2, 3, null]"),Arrays.toString(arrayList.toArray()) );
+    assertEquals(new String("[0, 1, 2, 3]"),Arrays.toString(arrayList.toArray()) );
 
     arrayList.insert(4, new Integer(4));
     arrayList.insert(4, new Integer(5));
