@@ -21,4 +21,12 @@ class SortTest {
     assertEquals(Arrays.toString(expected), Arrays.toString(Sort.bubble(arrayRandom, SORT_TYPE.ASC)));
     assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.bubble(arrayRandom, SORT_TYPE.DESC)));
   }
+
+  @Test
+  void insertionSort() {
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.insertion(arrayReversed, SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.insertion(arrayOrdered, SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.insertion(arrayRandom, SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.insertion(arrayRandom, SORT_TYPE.DESC)));
+  }
 }
