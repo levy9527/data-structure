@@ -91,21 +91,20 @@ public class Sort {
     int[] result = Arrays.copyOf(array, array.length);
 
     for(int i = 0; i < result.length - 1; i++) {
-      int edge = result[i];
       int position = i;
 
       for(int j = i + 1; j < result.length; j++) {
         if(
-          type == SORT_TYPE.ASC && result[j] < edge ||
-            type == SORT_TYPE.DESC && result[j] > edge
+          type == SORT_TYPE.ASC && result[j] < result[position] ||
+            type == SORT_TYPE.DESC && result[j] > result[position]
         ) {
-          edge = result[j];
+          // 对于数组来说，找到对应最小值对应的下标，即相当于找到了最小值
           position = j;
         }
       }
 
       int temp = result[i];
-      result[i] = edge;
+      result[i] = result[position];
       result[position] = temp;
     }
 
