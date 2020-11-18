@@ -29,4 +29,12 @@ class SortTest {
     assertEquals(Arrays.toString(expected), Arrays.toString(Sort.insertion(arrayRandom, SORT_TYPE.ASC)));
     assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.insertion(arrayRandom, SORT_TYPE.DESC)));
   }
+
+  @Test
+  void selectionSort() {
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.selection(arrayReversed, SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.selection(arrayOrdered, SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.selection(arrayRandom, SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.selection(arrayRandom, SORT_TYPE.DESC)));
+  }
 }

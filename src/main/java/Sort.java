@@ -79,4 +79,36 @@ public class Sort {
 
     return result;
   }
+
+  /**
+   *
+   * @param array 要排序的数组，原始数据不会被改变
+   * @param type 升序还是降序
+   * @return 返回排序后的数组
+   */
+  static int[] selection(int[] array, SORT_TYPE type) {
+    if (array.length < 2) return array;
+    int[] result = Arrays.copyOf(array, array.length);
+
+    for(int i = 0; i < result.length - 1; i++) {
+      int edge = result[i];
+      int position = i;
+
+      for(int j = i + 1; j < result.length; j++) {
+        if(
+          type == SORT_TYPE.ASC && result[j] < edge ||
+            type == SORT_TYPE.DESC && result[j] > edge
+        ) {
+          edge = result[j];
+          position = j;
+        }
+      }
+
+      int temp = result[i];
+      result[i] = edge;
+      result[position] = temp;
+    }
+
+    return result;
+  }
 }
