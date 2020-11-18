@@ -10,9 +10,10 @@ public class Sort {
     System.out.println("bubble start: " + System.currentTimeMillis());
 
     int[] result = Arrays.copyOf(array, array.length);
-    boolean hasSwitch = false;
 
     for(int i = 0; i < result.length - 1; i++){
+      boolean hasSwitch = false;
+
       for(int j = 0; j < result.length - 1 - i; j++){
         if(
           type == SORT_TYPE.ASC && result[j] > result[j + 1] ||
@@ -28,7 +29,7 @@ public class Sort {
       if (!hasSwitch) break;
     }
 
-    System.out.println("bubble end: " + System.currentTimeMillis());
+    System.out.println("bubble ended: " + System.currentTimeMillis());
 
     return result;
   }
