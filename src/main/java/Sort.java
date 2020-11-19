@@ -19,12 +19,16 @@ public class Sort {
 
     int[] result = Arrays.copyOf(array, array.length);
     int i = 0, j;
-    boolean hasSwitch = false;
+    boolean hasSwitch;
+
+    int count = 0;
 
     for(; i < result.length - 1; i++){
       hasSwitch = false;
 
       for(j = 0; j < result.length - 1 - i; j++){
+        count++;
+
         if(
           type == SORT_TYPE.ASC && result[j] > result[j + 1] ||
             type == SORT_TYPE.DESC && result[j] < result[j + 1]
@@ -39,7 +43,7 @@ public class Sort {
       if (!hasSwitch) break;
     }
 
-    System.out.println("bubble invoked times: " + (!hasSwitch ? i + 1 : i));
+    System.out.println("bubble invoked times: " + count);
 
     return result;
   }
@@ -57,6 +61,8 @@ public class Sort {
     if (array.length < 2) return array;
     int[] result = Arrays.copyOf(array, array.length);
 
+    int count = 0;
+
     // 未排序区间，从第 2 个元素算起
     for(int i = 1; i < result.length; i++) {
       int value = result[i];
@@ -65,6 +71,8 @@ public class Sort {
 
       // 依次向前比较
       for(; j >=0 ; j--) {
+        count++;
+
         if(
           type == SORT_TYPE.ASC && value < result[j] ||
             type == SORT_TYPE.DESC && value > result[j]
@@ -76,6 +84,8 @@ public class Sort {
       // 因为循环会--，故要 +1 才能回到为 result[j] 赋值
       result[j + 1] = value;
     }
+
+    System.out.println("insertion invoked times: " + count);
 
     return result;
   }
@@ -90,10 +100,14 @@ public class Sort {
     if (array.length < 2) return array;
     int[] result = Arrays.copyOf(array, array.length);
 
+    int count = 0;
+
     for(int i = 0; i < result.length - 1; i++) {
       int position = i;
 
       for(int j = i + 1; j < result.length; j++) {
+        count++;
+
         if(
           type == SORT_TYPE.ASC && result[j] < result[position] ||
             type == SORT_TYPE.DESC && result[j] > result[position]
@@ -107,6 +121,8 @@ public class Sort {
       result[i] = result[position];
       result[position] = temp;
     }
+
+    System.out.println("selection invoked times: " + count);
 
     return result;
   }
