@@ -37,4 +37,14 @@ class SortTest {
     assertEquals(Arrays.toString(expected), Arrays.toString(Sort.selection(arrayRandom, SORT_TYPE.ASC)));
     assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.selection(arrayRandom, SORT_TYPE.DESC)));
   }
+
+  @Test
+  void quickSort() {
+    Sort.quick(arrayReversed, 0,arrayReversed.length - 1, SORT_TYPE.ASC);
+    assertEquals(Arrays.toString(expected), Arrays.toString(arrayReversed));
+//    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.quick(arrayReversed, SORT_TYPE.ASC)));
+//    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.quick(arrayOrdered, SORT_TYPE.ASC)));
+//    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.quick(arrayRandom, SORT_TYPE.ASC)));
+//    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.quick(arrayRandom, SORT_TYPE.DESC)));
+  }
 }

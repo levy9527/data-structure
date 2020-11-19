@@ -126,4 +126,39 @@ public class Sort {
 
     return result;
   }
+
+  static void quick(int[] array, int left, int right, SORT_TYPE type) {
+    if (array.length < 2) return;
+    if (left >= right) return ;
+
+//    int[] result = Arrays.copyOf(array, array.length);
+
+//    int count = 0;
+    int pivot = division(array, left, right);
+    quick(array, left, pivot - 1, type);
+    quick(array, pivot + 1, right, type);
+
+
+//    System.out.println("quick invoked times: " + count);
+
+//    return result;
+  }
+
+  private static int division(int[] array, int left, int right) {
+    int base = array[left];
+
+    // 从小到到在排序，则先从右向左扫描找小的，再从左向右扫描找大的
+    while (left < right && array[right] > base)
+      right--;
+    array[left] = array[right];
+
+    while (left < right && array[left] < base)
+      left++;
+    array[right] = array[left];
+
+    array[left] = base;
+
+    return left;
+  }
+
 }
