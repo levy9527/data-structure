@@ -144,6 +144,56 @@ public class Sort {
 //    return result;
   }
 
+  static int[] shell(int[] array, SORT_TYPE type) {
+    if (array.length < 2) return null;
+    int[] result = Arrays.copyOf(array, array.length);
+
+    int s = result.length / 2;
+
+    while (s >= 1) {
+      // 拆分子序列
+      // 这里不能使用前半段: 0 + s 去循环；因为 s 在变，则当 s = 1 时，会出现 i < 1 的判断，则无法遍历数组
+      for (int i = s; i < result.length; i++) {
+        int x = result[i];
+        // 序列内根据增量 向前比较
+        int j = i - s;
+
+        while (j >= 0 && result[j] > x) {
+          result[j + s] = result[j];
+          j = j - s;
+        }
+        // 可以这样想：假设上面是 0 退出了循环，则 j < 0 了，故要把数字加回来
+        result[j + s] = x;
+      }
+      s /= 2;
+    }
+
+    return result;
+  }
+
+//  static void merge(int array[], SORT_TYPE type) {
+//    int[] temp = new int[array.length];
+//    int len = 1;
+//    int flag = 0;
+//
+//    while (len < array.length) {
+//      if (flag == 1) {
+//        mergePass(result, len, temp);
+//      }
+//      else {
+//        mergePass(temp, len, result);
+//      }
+//
+//      len *= 2;
+//      flag = 1 - flag;
+//    }
+//
+//    if (flag == 1) {
+//      for (int i = 0; i <  temp.length; i++)
+//        array[i] = temp[i];
+//    }
+//  }
+
   private static int division(int[] array, int left, int right) {
     int base = array[left];
 
