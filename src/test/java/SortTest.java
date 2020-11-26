@@ -56,4 +56,13 @@ class SortTest {
 //    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.quick(arrayRandom, SORT_TYPE.DESC)));
 
   }
+
+  @Test
+  void MergeSort() {
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayReversed, SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayOrdered, SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayRandom, SORT_TYPE.ASC)));
+//    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.quick(arrayRandom, SORT_TYPE.DESC)));
+
+  }
 }

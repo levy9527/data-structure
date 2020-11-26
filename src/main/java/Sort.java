@@ -171,28 +171,66 @@ public class Sort {
     return result;
   }
 
-//  static void merge(int array[], SORT_TYPE type) {
-//    int[] temp = new int[array.length];
-//    int len = 1;
-//    int flag = 0;
-//
-//    while (len < array.length) {
-//      if (flag == 1) {
-//        mergePass(result, len, temp);
-//      }
-//      else {
-//        mergePass(temp, len, result);
-//      }
-//
-//      len *= 2;
-//      flag = 1 - flag;
-//    }
-//
-//    if (flag == 1) {
-//      for (int i = 0; i <  temp.length; i++)
-//        array[i] = temp[i];
-//    }
-//  }
+  static int[] merge(int array[], SORT_TYPE type) {
+    int[] result = Arrays.copyOf(array, array.length);
+    int[] temp = new int[array.length];
+    // 初始子序列长度为1
+    int len = 1;
+    boolean flag = false;
+
+    while (len < result.length) {
+      if (!flag) {
+        mergePass(result, temp, len);
+      }
+      else {
+        mergePass(temp, result, len);
+      }
+
+      len *= 2;
+      flag = !flag;
+    }
+
+    if (flag) {
+      for (int i = 0; i < temp.length; i++)
+        result[i] = temp[i];
+    }
+
+    return result;
+  }
+
+  private static void mergePass(int[] origin, int[] target, int len){
+    int leftStart = 0;
+    while (leftStart + len < origin.length) {
+      int rightEnd = leftStart + 2 * len - 1;
+      if (rightEnd >= origin.length) rightEnd = origin.length -1;
+
+      mergeStep(origin, target, leftStart, leftStart + len - 1, rightEnd);
+
+      leftStart = rightEnd + 1;
+    }
+
+    while (leftStart < origin.length) {
+      target[leftStart] = origin[leftStart];
+      leftStart++;
+    }
+  }
+
+  private static void mergeStep(int[] origin, int[] target, int leftStart, int leftEnd, int rightEnd) {
+    int rightStart = leftEnd + 1;
+    int i = leftStart;
+
+    while (leftStart <= leftEnd && rightStart <= rightEnd) {
+      if (origin[leftStart] <= origin[rightStart]) {
+        target[i++] = origin[leftStart++];
+      }
+      else {
+        target[i++] = origin[rightStart++];
+      }
+    }
+
+    while (leftStart <= leftEnd) target[i++] = origin[leftStart++];
+    while (rightStart <= rightEnd) target[i++] = origin[rightStart++];
+  }
 
   private static int division(int[] array, int left, int right) {
     int base = array[left];
