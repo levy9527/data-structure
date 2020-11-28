@@ -15,16 +15,19 @@ class BinaryTreeTest {
   void traversal() {
     assertEquals("", tree.preOrder());
 
-    tree.setData(1);
+    tree.addNode(1);
     tree.addNode(2);
     tree.addNode(3);
+    tree.addNode(4);
+    tree.addNode(5);
+    tree.addNode(6);
 
-    assertEquals("123", tree.preOrder());
-    assertEquals("213", tree.inOrder());
-    assertEquals("231", tree.postOrder());
-    assertEquals("123", tree.levelOrder());
+    assertEquals("124536", tree.preOrder());
+    assertEquals("425163", tree.inOrder());
+    assertEquals("452631", tree.postOrder());
+    assertEquals("123456", tree.levelOrder());
 
-    assertEquals(2, tree.depth());
+    assertEquals(3, tree.depth());
   }
 
 }
