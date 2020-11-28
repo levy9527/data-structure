@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BinaryTreeTest {
@@ -25,7 +28,13 @@ class BinaryTreeTest {
     assertEquals("124536", tree.preOrder());
     assertEquals("425163", tree.inOrder());
     assertEquals("452631", tree.postOrder());
-    assertEquals("123456", tree.levelOrder());
+
+    LinkedList<Integer> levelOrder = new LinkedList<>();
+    tree.levelOrder(node -> {
+      if (!Objects.isNull(node.getData())) levelOrder.add((Integer) node.getData());
+      return true;
+    });
+    assertEquals("[1, 2, 3, 4, 5, 6]", Arrays.toString(levelOrder.toArray()));
 
     assertEquals(3, tree.depth());
   }

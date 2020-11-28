@@ -28,55 +28,21 @@ public class BinaryTree<T> {
       return;
     }
 
-    List<BinaryTree> queue = new LinkedList<>();
-    queue.add(this);
-
-    while (queue.size() != 0) {
-      BinaryTree<T> node = queue.remove(0);
-
-      if (!Objects.isNull(node.getLeft())) queue.add(node.getLeft());
-      else {
+    levelOrder(node -> {
+      if (Objects.isNull(node.getLeft())) {
         BinaryTree<T> left = new BinaryTree<>(data);
         node.setLeft(left);
         left.setParent(node);
-        return;
+        return false;
       }
-      if (!Objects.isNull(node.getRight())) queue.add(node.getRight());
-      else {
+      else if (Objects.isNull(node.getRight())) {
         BinaryTree<T> right = new BinaryTree<>(data);
         node.setRight(right);
         right.setParent(parent);
-        return;
+        return false;
       }
-    }
-
-//    levelOrder(node -> {
-//      if (!Objects.isNull(node.getData())) return true;
-//
-//      node.setData(data);
-//      BinaryTree<T> parent = node.getParent();
-//
-//      // 得到的节点有三种情况：根节点或左子节点或右子节点
-//      if (Objects.isNull(parent)) {
-//        BinaryTree<T> child = new BinaryTree<>();
-//        node.setLeft(child);
-//        child.setParent(node);
-//      }
-//      // 左子节点
-//      else if (Objects.isNull(parent.getRight())) {
-//        BinaryTree<T> right = new BinaryTree<>();
-//        parent.setRight(right);
-//        right.setParent(parent);
-//      }
-//      // 右子节点
-//      else {
-//        BinaryTree<T> left = new BinaryTree<>();
-//        parent.getLeft().setLeft(left);
-//        left.setParent(parent.getLeft());
-//      }
-//
-//      return false;
-//    });
+      return true;
+    });
   }
 
   public String preOrder() {
@@ -115,36 +81,20 @@ public class BinaryTree<T> {
     return result.toString();
   }
 
-  public String levelOrder() {
-    if (Objects.isNull(data)) return "";
-    StringBuilder result = new StringBuilder();
-    List<BinaryTree> queue = new LinkedList<>();
+  public void levelOrder(Function<BinaryTree<T>, Boolean> operation) {
+    if (Objects.isNull(data)) return ;
+
+    List<BinaryTree<T>> queue = new LinkedList<>();
     queue.add(this);
 
     while (queue.size() != 0) {
       BinaryTree<T> node = queue.remove(0);
 
-      if (!Objects.isNull(node.getData())) result.append(node.getData().toString());
+      if (!operation.apply(node)) return;
+
       if (!Objects.isNull(node.getLeft())) queue.add(node.getLeft());
       if (!Objects.isNull(node.getRight())) queue.add(node.getRight());
     }
-
-    return result.toString();
-  }
-
-  public void levelOrder(Predicate<BinaryTree> shouldContinue) {
-    List<BinaryTree> queue = new LinkedList<>();
-    queue.add(this);
-
-    while (queue.size() != 0) {
-      BinaryTree<T> node = queue.remove(0);
-
-      if (shouldContinue.test(node)) {
-        if (!Objects.isNull(node.getLeft())) queue.add(node.getLeft());
-        if (!Objects.isNull(node.getRight())) queue.add(node.getRight());
-      }
-    }
-
   }
 
   public int depth() {
@@ -172,8 +122,7 @@ public class BinaryTree<T> {
   }
 
   /**
-   * 获取当前节点的数据
-   * @return
+   * @return 当前节点的数据
    */
   public T getData() {
     return data;
