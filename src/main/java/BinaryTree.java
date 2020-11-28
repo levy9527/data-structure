@@ -54,29 +54,23 @@ public class BinaryTree<T> {
     if (!Objects.isNull(right)) right.preOrder(operation);
   }
 
-  public String inOrder() {
-    if (Objects.isNull(data)) return "";
-    StringBuilder result = new StringBuilder();
+  public void inOrder(Consumer<BinaryTree<T>> operation) {
+    if (Objects.isNull(data)) return;
 
-    if (!Objects.isNull(left)) result.append(left.inOrder());
+    if (!Objects.isNull(left)) left.inOrder(operation);
 
-    result.append(data.toString());
+    operation.accept(this);
 
-    if (!Objects.isNull(right)) result.append(right.inOrder());
-
-    return result.toString();
+    if (!Objects.isNull(right)) right.inOrder(operation);
   }
 
-  public String postOrder() {
-    if (Objects.isNull(data)) return "";
-    StringBuilder result = new StringBuilder();
+  public void postOrder(Consumer<BinaryTree<T>> operation) {
+    if (Objects.isNull(data)) return;
 
-    if (!Objects.isNull(left)) result.append(left.postOrder());
-    if (!Objects.isNull(right)) result.append(right.postOrder());
+    if (!Objects.isNull(left)) left.postOrder(operation);
+    if (!Objects.isNull(right)) right.postOrder(operation);
 
-    result.append(data.toString());
-
-    return result.toString();
+    operation.accept(this);
   }
 
   public void levelOrder(Function<BinaryTree<T>, Boolean> operation) {

@@ -31,13 +31,16 @@ class BinaryTreeTest {
     tree.addNode(6);
 
     LinkedList<Integer> preOrder = new LinkedList<>();
-    tree.preOrder(node -> {
-      preOrder.add(node.getData());
-    });
-
+    tree.preOrder(node -> preOrder.add(node.getData()));
     assertEquals("[1, 2, 4, 5, 3, 6]", Arrays.toString(preOrder.toArray()));
-    assertEquals("425163", tree.inOrder());
-    assertEquals("452631", tree.postOrder());
+
+    LinkedList<Integer> inOrder = new LinkedList<>();
+    tree.inOrder(node -> inOrder.add(node.getData()));
+    assertEquals("[4, 2, 5, 1, 6, 3]", Arrays.toString(inOrder.toArray()));
+
+    LinkedList<Integer> postOrder = new LinkedList<>();
+    tree.postOrder(node -> postOrder.add(node.getData()));
+    assertEquals("[4, 5, 2, 6, 3, 1]", Arrays.toString(postOrder.toArray()));
 
     LinkedList<Integer> levelOrder = new LinkedList<>();
     tree.levelOrder(node -> {
