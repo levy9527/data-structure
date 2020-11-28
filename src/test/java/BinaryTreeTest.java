@@ -22,6 +22,7 @@ class BinaryTreeTest {
     assertEquals("123", tree.preOrder());
     assertEquals("213", tree.inOrder());
     assertEquals("231", tree.postOrder());
+    assertEquals("123", tree.levelOrder());
   }
 
 }

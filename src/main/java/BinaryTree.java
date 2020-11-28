@@ -1,10 +1,10 @@
 import java.util.Objects;
 
 public class BinaryTree<T> {
-  BinaryTree<T> left;
-  BinaryTree<T> right;
-  BinaryTree<T> parent = null;
-  T data = null;
+  private BinaryTree<T> left;
+  private BinaryTree<T> right;
+  private BinaryTree<T> parent = null;
+  private T data = null;
 
   public BinaryTree() {
   }
@@ -30,7 +30,6 @@ public class BinaryTree<T> {
       right.setParent(this);
     }
   }
-
 
   public String preOrder() {
     if (Objects.isNull(data)) return "";
@@ -64,6 +63,23 @@ public class BinaryTree<T> {
     if (!Objects.isNull(right)) result.append(right.preOrder());
 
     result.append(data.toString());
+
+    return result.toString();
+  }
+
+  public String levelOrder() {
+    if (Objects.isNull(data)) return "";
+    StringBuilder result = new StringBuilder();
+    List<BinaryTree> queue = new LinkedList<>();
+    queue.add(this);
+
+    while (queue.size() != 0) {
+      BinaryTree<T> node = queue.remove(0);
+
+      if (!Objects.isNull(node.getData())) result.append(node.getData().toString());
+      if (!Objects.isNull(node.getLeft())) queue.add(node.getLeft());
+      if (!Objects.isNull(node.getRight())) queue.add(node.getRight());
+    }
 
     return result.toString();
   }
