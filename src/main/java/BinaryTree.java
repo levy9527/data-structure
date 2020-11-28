@@ -15,7 +15,7 @@ public class BinaryTree<T> {
   }
 
   /**
-   * 按照完全二叉树的形式，自动判断加入左子树还是右子树
+   * 按照完全二叉树的形式，通过层次遍历，自动判断加入左子树还是右子树
    * 需要宽度优先遍历
    * @param data 任意类型的数据
    */
@@ -82,6 +82,22 @@ public class BinaryTree<T> {
     }
 
     return result.toString();
+  }
+
+  public int depth() {
+    if (Objects.isNull(data)) return 0;
+
+    int leftDepth = 0;
+    int rightDepth = 0;
+
+    if (!Objects.isNull(left)) {
+      leftDepth = left.depth();
+    }
+    if (!Objects.isNull(right)) {
+      rightDepth = right.depth();
+    }
+
+    return 1 + (Math.max(leftDepth, rightDepth));
   }
 
   public BinaryTree<T> getParent() {

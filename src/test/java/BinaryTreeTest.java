@@ -23,6 +23,8 @@ class BinaryTreeTest {
     assertEquals("213", tree.inOrder());
     assertEquals("231", tree.postOrder());
     assertEquals("123", tree.levelOrder());
+
+    assertEquals(2, tree.depth());
   }
 
 }
