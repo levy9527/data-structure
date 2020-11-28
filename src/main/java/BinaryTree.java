@@ -1,0 +1,102 @@
+import java.util.Objects;
+
+public class BinaryTree<T> {
+  BinaryTree<T> left;
+  BinaryTree<T> right;
+  BinaryTree<T> parent = null;
+  T data = null;
+
+  public BinaryTree() {
+  }
+
+  public BinaryTree(T data) {
+    // 默认初始化时，本节点作为根节点
+    this.data = data;
+  }
+
+  /**
+   * 按照完全二叉树的形式，自动判断加入左子树还是右子树
+   * 需要宽度优先遍历
+   * @param data 任意类型的数据
+   */
+  public void addNode(T data) {
+    if (Objects.isNull(left)) {
+      left = new BinaryTree<>(data);
+      left.setParent(this);
+    }
+
+    else if (Objects.isNull(right)) {
+      right = new BinaryTree<>(data);
+      right.setParent(this);
+    }
+  }
+
+
+  public String preOrder() {
+    if (Objects.isNull(data)) return "";
+
+    StringBuilder result = new StringBuilder(data.toString());
+
+    if (!Objects.isNull(left)) result.append(left.preOrder());
+    if (!Objects.isNull(right)) result.append(right.preOrder());
+
+    return result.toString();
+  }
+
+  public String inOrder() {
+    if (Objects.isNull(data)) return "";
+    StringBuilder result = new StringBuilder();
+
+    if (!Objects.isNull(left)) result.append(left.preOrder());
+
+    result.append(data.toString());
+
+    if (!Objects.isNull(right)) result.append(right.preOrder());
+
+    return result.toString();
+  }
+
+  public String postOrder() {
+    if (Objects.isNull(data)) return "";
+    StringBuilder result = new StringBuilder();
+
+    if (!Objects.isNull(left)) result.append(left.preOrder());
+    if (!Objects.isNull(right)) result.append(right.preOrder());
+
+    result.append(data.toString());
+
+    return result.toString();
+  }
+
+  public BinaryTree<T> getParent() {
+    return parent;
+  }
+
+  public void setParent(BinaryTree<T> parent) {
+    this.parent = parent;
+  }
+
+  public T getData() {
+    return data;
+  }
+
+  public void setData(T data) {
+    this.data = data;
+  }
+
+  public BinaryTree<T> getLeft() {
+    return left;
+  }
+
+  public void setLeft(BinaryTree<T> left) {
+    this.left = left;
+  }
+
+  public BinaryTree<T> getRight() {
+    return right;
+  }
+
+  public void setRight(BinaryTree<T> right) {
+    this.right = right;
+  }
+}
