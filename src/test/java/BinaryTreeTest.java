@@ -16,7 +16,12 @@ class BinaryTreeTest {
 
   @Test
   void traversal() {
-    assertEquals("", tree.preOrder());
+    LinkedList<Integer> emptyList = new LinkedList<>();
+    tree.preOrder(node -> {
+      emptyList.add(node.getData());
+    });
+
+    assertEquals("[]", Arrays.toString(emptyList.toArray()));
 
     tree.addNode(1);
     tree.addNode(2);
@@ -25,13 +30,18 @@ class BinaryTreeTest {
     tree.addNode(5);
     tree.addNode(6);
 
-    assertEquals("124536", tree.preOrder());
+    LinkedList<Integer> preOrder = new LinkedList<>();
+    tree.preOrder(node -> {
+      preOrder.add(node.getData());
+    });
+
+    assertEquals("[1, 2, 4, 5, 3, 6]", Arrays.toString(preOrder.toArray()));
     assertEquals("425163", tree.inOrder());
     assertEquals("452631", tree.postOrder());
 
     LinkedList<Integer> levelOrder = new LinkedList<>();
     tree.levelOrder(node -> {
-      if (!Objects.isNull(node.getData())) levelOrder.add((Integer) node.getData());
+      if (!Objects.isNull(node.getData())) levelOrder.add(node.getData());
       return true;
     });
     assertEquals("[1, 2, 3, 4, 5, 6]", Arrays.toString(levelOrder.toArray()));

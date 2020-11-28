@@ -45,15 +45,13 @@ public class BinaryTree<T> {
     });
   }
 
-  public String preOrder() {
-    if (Objects.isNull(data)) return "";
+  public void preOrder(Consumer<BinaryTree<T>> operation) {
+    if (Objects.isNull(data)) return;
 
-    StringBuilder result = new StringBuilder(data.toString());
+    operation.accept(this);
 
-    if (!Objects.isNull(left)) result.append(left.preOrder());
-    if (!Objects.isNull(right)) result.append(right.preOrder());
-
-    return result.toString();
+    if (!Objects.isNull(left)) left.preOrder(operation);
+    if (!Objects.isNull(right)) right.preOrder(operation);
   }
 
   public String inOrder() {
