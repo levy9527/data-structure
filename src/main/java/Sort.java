@@ -91,7 +91,7 @@ public class Sort {
   }
 
   /**
-   *
+   * 不稳定
    * @param array 要排序的数组，原始数据不会被改变
    * @param type 升序还是降序
    * @return 返回排序后的数组
@@ -127,6 +127,10 @@ public class Sort {
     return result;
   }
 
+  /**
+   * 不稳定，因为存在交换
+   * @pram type
+   */
   static void quick(int[] array, int left, int right, SORT_TYPE type) {
     if (array.length < 2) return;
     if (left >= right) return ;
@@ -144,6 +148,12 @@ public class Sort {
 //    return result;
   }
 
+  /**
+   * 不稳定，因为存在交换
+   * @param array
+   * @param type
+   * @return
+   */
   static int[] shell(int[] array, SORT_TYPE type) {
     if (array.length < 2) return null;
     int[] result = Arrays.copyOf(array, array.length);
@@ -171,6 +181,9 @@ public class Sort {
     return result;
   }
 
+  /**
+   * 稳定，但需要占用与待排序数据等量的内存空间
+   */
   static int[] merge(int array[], SORT_TYPE type) {
     int[] result = Arrays.copyOf(array, array.length);
     int[] temp = new int[array.length];
