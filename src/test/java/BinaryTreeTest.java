@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -15,6 +16,7 @@ class BinaryTreeTest {
   }
 
   @Test
+  @DisplayName("addNode/traversal/depth")
   void traversal() {
     LinkedList<Integer> emptyList = new LinkedList<>();
     tree.preOrder(node -> {
@@ -50,6 +52,21 @@ class BinaryTreeTest {
     assertEquals("[1, 2, 3, 4, 5, 6]", Arrays.toString(levelOrder.toArray()));
 
     assertEquals(3, tree.depth());
+  }
+
+  @Test
+  void threading() {
+    tree.addNode(1);
+    tree.addNode(2);
+    tree.addNode(3);
+    tree.addNode(4);
+    tree.addNode(5);
+    tree.addNode(6);
+
+    tree.threadingInOrder();
+    assertEquals("[4, 2, 5, 1, 6, 3]", Arrays.toString(tree.toArray()));
+    assertEquals(5, tree.findPrev(tree).getData());
+    assertEquals(6, tree.findNext(tree).getData());
   }
 
 }

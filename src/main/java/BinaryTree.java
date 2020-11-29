@@ -3,11 +3,22 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+enum POINTER_TYPE {
+  THREAD,
+  CHILD
+}
+
+/**
+ * 可检索父结点，有线索
+ * @param <T>
+ */
 public class BinaryTree<T> {
   private BinaryTree<T> left;
   private BinaryTree<T> right;
   private BinaryTree<T> parent = null;
   private T data = null;
+  private POINTER_TYPE leftType;
+  private POINTER_TYPE rightType;
 
   public BinaryTree() {
   }
@@ -105,6 +116,88 @@ public class BinaryTree<T> {
 
     return 1 + (Math.max(leftDepth, rightDepth));
   }
+
+  /**
+   * 将二叉树线索化，使用中序遍历的方式
+   * 关键是设置好指针及指标标识
+   */
+  public void threadingInOrder() {
+    BinaryTree<T>[] prev = (BinaryTree<T>[]) new BinaryTree<?>[1];
+
+    inOrder(node -> {
+      node.leftType = Objects.isNull(node.left) ? POINTER_TYPE.THREAD : POINTER_TYPE.CHILD;
+      node.rightType = Objects.isNull(node.right) ? POINTER_TYPE.THREAD : POINTER_TYPE.CHILD;
+
+      if (!Objects.isNull(prev[0])) {
+        if (node.leftType == POINTER_TYPE.THREAD) node.setLeft(prev[0]);
+        if (prev[0].rightType == POINTER_TYPE.THREAD) prev[0].setRight(node);
+      }
+
+      prev[0] = node;
+    });
+  }
+
+  /**
+   * should invoke threadingInOrder before
+   * @return found node
+   */
+  public BinaryTree<T> findNext(BinaryTree<T> node) {
+    if (Objects.isNull(node)) return null;
+    // 两种情况：1.有直接后继
+    if (node.rightType == POINTER_TYPE.THREAD) return node.getRight();
+    else {
+      // 2.无直接后继, 则要找到某个节点的前继是 node，即右子节点的最左子节点
+      BinaryTree<T> p = node.getRight();
+
+      while (p.leftType == POINTER_TYPE.CHILD) {
+        p = p.getLeft();
+      }
+      return p;
+    }
+  }
+
+  /**
+   * should invoke threadingInOrder before
+   * @return found node
+   */
+  public BinaryTree<T> findPrev(BinaryTree<T> node) {
+    if (Objects.isNull(node)) return null;
+    // 1.有直接前继
+    if (node.leftType == POINTER_TYPE.THREAD) return node.getLeft();
+    else {
+      // 2.无直接前继，则要找到某个节点的后继是 node，即左子节点的最右子节点
+      BinaryTree<T> p = node.getLeft();
+
+      while (p.rightType == POINTER_TYPE.CHILD) {
+        p = p.getRight();
+      }
+      return p;
+    }
+  }
+
+  /**
+   * should invoke threadingInOrder before
+   * @return inOrder data array
+   */
+  public T[] toArray() {
+    if (Objects.isNull(data)) return null;
+
+    BinaryTree<T> p = this;
+    // 这种方式比 findPrev 会更快
+    while (!Objects.isNull(p.getLeft()))
+      p = p.getLeft();
+
+    LinkedList<T> list = new LinkedList<>();
+    list.add(p.getData());
+
+    while (!Objects.isNull(p.getRight())) {
+      p = p.findNext(p);
+      list.add(p.getData());
+    }
+
+    return list.toArray();
+  }
+
 
   public BinaryTree<T> getParent() {
     return parent;
