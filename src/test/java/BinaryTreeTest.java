@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BinaryTreeTest {
   BinaryTree<Integer> tree;
@@ -19,9 +19,7 @@ class BinaryTreeTest {
   @DisplayName("addNode/traversal/depth")
   void traversal() {
     LinkedList<Integer> emptyList = new LinkedList<>();
-    tree.preOrder(node -> {
-      emptyList.add(node.getData());
-    });
+    tree.preOrder(node -> emptyList.add(node.getData()));
 
     assertEquals("[]", Arrays.toString(emptyList.toArray()));
 
@@ -67,6 +65,7 @@ class BinaryTreeTest {
     assertEquals("[4, 2, 5, 1, 6, 3]", Arrays.toString(tree.toArray()));
     assertEquals(5, tree.findPrev(tree).getData());
     assertEquals(6, tree.findNext(tree).getData());
+    assertEquals(tree, tree.find(1));
   }
 
 }

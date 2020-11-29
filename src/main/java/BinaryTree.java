@@ -1,7 +1,6 @@
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.function.Predicate;
 
 enum POINTER_TYPE {
   THREAD,
@@ -54,6 +53,20 @@ public class BinaryTree<T> {
       }
       return true;
     });
+  }
+
+  public BinaryTree<T> find(T data) {
+    List<BinaryTree<T>> result = new ArrayList<>(1);
+
+    levelOrder(node -> {
+      if (Objects.deepEquals(node.getData(), data)) {
+        result.add(node);
+        return false;
+      }
+      return true;
+    });
+
+    return result.get(0);
   }
 
   public void preOrder(Consumer<BinaryTree<T>> operation) {
