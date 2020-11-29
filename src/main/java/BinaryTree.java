@@ -73,6 +73,7 @@ public class BinaryTree<T> {
     operation.accept(this);
   }
 
+  // https://www.baeldung.com/java-8-lambda-expressions-tips
   public void levelOrder(Function<BinaryTree<T>, Boolean> operation) {
     if (Objects.isNull(data)) return ;
 
