@@ -129,7 +129,6 @@ public class Sort {
 
   /**
    * 不稳定，因为存在交换
-   * @pram type
    */
   static void quick(int[] array, int left, int right, SORT_TYPE type) {
     if (array.length < 2) return;
@@ -150,9 +149,7 @@ public class Sort {
 
   /**
    * 不稳定，因为存在交换
-   * @param array
-   * @param type
-   * @return
+   * @return 返回排序后的数组
    */
   static int[] shell(int[] array, SORT_TYPE type) {
     if (array.length < 2) return null;
@@ -183,6 +180,7 @@ public class Sort {
 
   /**
    * 稳定，但需要占用与待排序数据等量的内存空间
+   * @return 返回排序后的数组
    */
   static int[] merge(int array[], SORT_TYPE type) {
     int[] result = Arrays.copyOf(array, array.length);
@@ -209,6 +207,59 @@ public class Sort {
     }
 
     return result;
+  }
+
+  /**
+   * 构造大顶堆进行排序
+   * @return 返回排序后的数组
+   */
+  static int[] heap(int[] array) {
+    if (array.length < 2) return array;
+    int[] result = Arrays.copyOf(array, array.length);
+    int max = result.length - 1;
+
+    // 先对非叶子节点动手，构造堆，也即完全二叉树
+    for (int i = (max - 1) / 2; i >= 0; i--)
+      headAdjust(result, i, max);
+
+    // 再逐步输出堆顶元素
+    for (int i = max; i > 0; i--) {
+      // 把顶部元素与尾部元素相交换（因为此时构造的是大顶堆，所以最大的数放数组最后面）
+      int temp = result[i];
+      result[i] = result[0];
+      result[0] = temp;
+
+      headAdjust(result, 0, i - 1);
+    }
+
+    return result;
+  }
+
+  /**
+   *
+   * @param array 待排序数组
+   * @param node 要调整为符合堆要求的节点
+   * @param max 待排序元素的最大下标，这个参数很重要，不能直接使用 array.length，堆排序是原地排序，数组长度不变，而待排序的数据却一直在减少
+   */
+  private static void headAdjust(int[] array, int node, int max) {
+    if (node < 0) return;
+
+    // 首先要判断节点是否是非叶子节点——完全二叉树，非叶子节点一定会有左子树
+    while (node * 2 + 1 <= max) {
+      int left = node * 2 + 1;
+
+      // 判断是否有右子树，且数值更大
+      if (left + 1 <= max && array[left + 1] > array[left]) left++;
+
+      if (array[node] < array[left]) {
+        int temp = array[node];
+        array[node] = array[left];
+        array[left] = temp;
+
+        node = left;
+      }
+      else break;
+    }
   }
 
   private static void mergePass(int[] origin, int[] target, int len){
@@ -248,7 +299,7 @@ public class Sort {
   private static int division(int[] array, int left, int right) {
     int base = array[left];
 
-    // 从小到到在排序，则先从右向左扫描找小的，再从左向右扫描找大的
+    // 从小到大排序，则先从右向左扫描找小的，再从左向右扫描找大的
     while (left < right && array[right] > base)
       right--;
     array[left] = array[right];

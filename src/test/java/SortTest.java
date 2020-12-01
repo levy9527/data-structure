@@ -1,9 +1,8 @@
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SortTest {
   private int[] arrayReversed = new int[]{10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
@@ -58,11 +57,18 @@ class SortTest {
   }
 
   @Test
-  void MergeSort() {
+  void mergeSort() {
     assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayReversed, SORT_TYPE.ASC)));
     assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayOrdered, SORT_TYPE.ASC)));
     assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayRandom, SORT_TYPE.ASC)));
 //    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.quick(arrayRandom, SORT_TYPE.DESC)));
 
+  }
+
+  @Test
+  void heapSort() {
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.heap(arrayReversed)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.heap(arrayOrdered)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.heap(arrayRandom)));
   }
 }
