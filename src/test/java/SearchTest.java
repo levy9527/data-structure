@@ -22,4 +22,13 @@ class SearchTest {
     result = Search.sequential(array, data -> data == 66);
     assertNull(result);
   }
+
+  @Test
+  void binarySearch() {
+    int[] array1 = new int[]{6, 12, 28, 37, 54, 65, 69, 83, 90, 92};
+    int index = 0;
+
+    assertEquals(3, Search.binary(array1, 37));
+    assertEquals(-1, Search.binary(array1, 66));
+  }
 }
