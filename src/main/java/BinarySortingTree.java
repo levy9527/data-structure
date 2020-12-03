@@ -39,6 +39,15 @@ public class BinarySortingTree<T> {
     node.parent = parent;
   }
 
+  public BinarySortingTree<T> findNode(int data) {
+
+    if (data == this.getData()) return this;
+    else if (!Objects.isNull(this.getLeft()) && data < this.getData()) return this.getLeft().findNode(data);
+    else if (!Objects.isNull(this.getRight()) && data > this.getData())return this.getRight().findNode(data);
+
+    return null;
+  }
+
   public void inOrder(Consumer<BinarySortingTree<T>> operation) {
     if (!Objects.isNull(this.getLeft())) this.getLeft().inOrder(operation);
     operation.accept(this);
