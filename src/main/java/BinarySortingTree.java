@@ -45,7 +45,7 @@ public class BinarySortingTree<T> {
    * 1. 无子节点（叶子节点/根节点）
    * 2. 只有左子节点
    * 3. 只有右子节点
-   * 4. 有左右子节点
+   * 4. 有左右子节点(右子节点有/没有左子树）
    */
   public void deleteNode(int data) {
     BinarySortingTree<T> node = findNode(data);
