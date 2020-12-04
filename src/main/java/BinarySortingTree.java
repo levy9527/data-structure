@@ -39,8 +39,62 @@ public class BinarySortingTree<T> {
     node.parent = parent;
   }
 
-  public BinarySortingTree<T> findNode(int data) {
+  /**
+   * 被删除结点总共有以下几种情况：
+   * 0. 不存在
+   * 1. 无子节点（叶子节点/根节点）
+   * 2. 只有左子节点
+   * 3. 只有右子节点
+   * 4. 有左右子节点
+   */
+  public void deleteNode(int data) {
+    BinarySortingTree<T> node = findNode(data);
+    if(Objects.isNull(node)) return;
 
+    BinarySortingTree<T> parent = node.getParent();
+    BinarySortingTree<T> left = node.getLeft();
+    BinarySortingTree<T> right = node.getRight();
+    Boolean isRight = false;
+    if (!Objects.isNull(parent) && node.equals(parent.getRight())) isRight = true;
+
+    if (Objects.isNull(left) && Objects.isNull(right)) {
+      // 无子节点
+      if (Objects.isNull(parent)) this.setData(0); // 程序有bug，应该设置 null
+      else if (isRight) parent.setRight(null);
+      else parent.setLeft(null);
+    }
+    else if (Objects.isNull(left)) {
+      // 只有右子节点
+      if (isRight) parent.setRight(right);
+      else parent.setLeft(right);
+
+      right.setParent(parent);
+    }
+    else if (Objects.isNull(right)) {
+      // 只有左子节点
+      if (isRight) parent.setRight(left);
+      else parent.setLeft(left);
+      left.setParent(parent);
+    }
+    else {
+      // 有左右子节点
+      BinarySortingTree<T> p = right;
+
+      if (Objects.isNull(p.getLeft())) {
+        node.setData(p.getData());
+        p.getParent().setRight(null);
+      }
+      else {
+        while (!Objects.isNull(p.getLeft())) {
+          p = p.getLeft();
+        }
+        node.setData(p.getData());
+        p.getParent().setLeft(null);
+      }
+    }
+  }
+
+  public BinarySortingTree<T> findNode(int data) {
     if (data == this.getData()) return this;
     else if (!Objects.isNull(this.getLeft()) && data < this.getData()) return this.getLeft().findNode(data);
     else if (!Objects.isNull(this.getRight()) && data > this.getData())return this.getRight().findNode(data);
