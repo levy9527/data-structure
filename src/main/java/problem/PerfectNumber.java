@@ -5,13 +5,13 @@ import java.util.LinkedList;
 
 public class PerfectNumber {
   boolean isPerfectNumber(int n) {
-    int max = n - 1;
+    int max = n;
     LinkedList<Integer> factors = new LinkedList<>();
 
     for (int i = 2; i <= max; i++) {
       if (n % i == 0) {
         factors.add(i);
-        if (max == n - 1) max = n / i;
+        if (max == n) max = n / i;
       }
     }
 
@@ -34,6 +34,7 @@ public class PerfectNumber {
         list.add(i);
     }
 
+    // [6, 28, 496, 8128]
     System.out.println(Arrays.toString(list.toArray()));
   }
 }
