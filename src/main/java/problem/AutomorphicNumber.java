@@ -1,5 +1,6 @@
 package problem;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,16 +10,37 @@ public class AutomorphicNumber {
     if (number < 1) return false;
 
     // when Math.pow(number, 2) larger than 2147483647(2^31 -1), it will not work
-    int power = (int) Math.pow(number, 2);
-    int sum = 0, i = 0, data = number;
-    while (data > 0) {
+//    int power = (int) Math.pow(number, 2);
+    int power = this.pow(number);
+    int sum = 0, i = 0, remain = number;
+    while (remain > 0) {
       sum += (power % 10) * Math.pow(10, i);
-      data /= 10;
+      remain /= 10;
       power /= 10;
       i++;
     }
 
     return sum == number;
+  }
+
+  private int pow(int number) {
+    int sum = 0;
+    int remain = number;
+    List<Integer> list = new ArrayList<>();
+
+    while (remain > 0) {
+      list.add(remain % 10);
+      remain /= 10;
+    }
+
+    int max = list.size() - 1;
+    int base = 0;
+    for (int i = 0; i <= max; i++) {
+      base += list.get(i) * Math.pow(10, i);
+      sum += base * list.get(max - i) * Math.pow(10, max - i);
+    }
+
+    return sum;
   }
 
   public static void main(String[] args) {
