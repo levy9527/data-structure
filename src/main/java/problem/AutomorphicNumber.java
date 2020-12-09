@@ -23,6 +23,12 @@ public class AutomorphicNumber {
     return sum == number;
   }
 
+  /**
+   * 625 * 625 in this case can be considering as sum of:
+   * - 5 * 600
+   * - 25 * 20
+   * - 625 * 5
+   */
   private int pow(int number) {
     int sum = 0;
     int remain = number;
