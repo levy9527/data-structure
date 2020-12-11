@@ -1,3 +1,5 @@
+package collection;
+
 public interface List<T> {
   boolean add(T element);
 

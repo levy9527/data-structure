@@ -1,3 +1,5 @@
+package collection;
+
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -17,8 +19,6 @@ public class ArrayList<T> implements List<T>{
 
   /**
    * add element in tail
-   * @param element
-   * @return
    */
   @Override
   public boolean add(T element) {

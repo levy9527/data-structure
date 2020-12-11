@@ -1,7 +1,9 @@
+package collection;
+
 public class LinkedStack<T> implements Stack<T>{
   private List<T> list;
 
-  LinkedStack() {
+  public LinkedStack() {
     list = new LinkedList<>();
   }
 

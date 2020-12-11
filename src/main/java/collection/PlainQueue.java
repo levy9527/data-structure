@@ -1,3 +1,5 @@
+package collection;
+
 import java.util.Arrays;
 
 /**
@@ -10,7 +12,7 @@ public class PlainQueue<T> implements Queue<T>{
   private int head = 0;
   private int tail = 0;
 
-  PlainQueue(int capacity) {
+  public PlainQueue(int capacity) {
     if (capacity <=0) throw new RuntimeException("capacity must > 0");
 
     array = (T[])new Object[capacity];

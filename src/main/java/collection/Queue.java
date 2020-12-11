@@ -1,3 +1,5 @@
+package collection;
+
 public interface Queue<T> {
   boolean enqueue(T element);
 

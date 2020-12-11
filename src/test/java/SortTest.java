@@ -1,3 +1,4 @@
+import collection.Sort;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -15,53 +16,53 @@ class SortTest {
 
   @Test
   void bubbleSort() {
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.bubble(arrayReversed, SORT_TYPE.ASC)));
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.bubble(arrayOrdered, SORT_TYPE.ASC)));
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.bubble(arrayRandom, SORT_TYPE.ASC)));
-    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.bubble(arrayRandom, SORT_TYPE.DESC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.bubble(arrayReversed, Sort.SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.bubble(arrayOrdered, Sort.SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.bubble(arrayRandom, Sort.SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.bubble(arrayRandom, Sort.SORT_TYPE.DESC)));
   }
 
   @Test
   void insertionSort() {
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.insertion(arrayReversed, SORT_TYPE.ASC)));
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.insertion(arrayOrdered, SORT_TYPE.ASC)));
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.insertion(arrayRandom, SORT_TYPE.ASC)));
-    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.insertion(arrayRandom, SORT_TYPE.DESC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.insertion(arrayReversed, Sort.SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.insertion(arrayOrdered, Sort.SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.insertion(arrayRandom, Sort.SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.insertion(arrayRandom, Sort.SORT_TYPE.DESC)));
   }
 
   @Test
   void selectionSort() {
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.selection(arrayReversed, SORT_TYPE.ASC)));
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.selection(arrayOrdered, SORT_TYPE.ASC)));
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.selection(arrayRandom, SORT_TYPE.ASC)));
-    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.selection(arrayRandom, SORT_TYPE.DESC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.selection(arrayReversed, Sort.SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.selection(arrayOrdered, Sort.SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.selection(arrayRandom, Sort.SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.selection(arrayRandom, Sort.SORT_TYPE.DESC)));
   }
 
   @Test
   void quickSort() {
-    Sort.quick(arrayReversed, 0,arrayReversed.length - 1, SORT_TYPE.ASC);
+    Sort.quick(arrayReversed, 0,arrayReversed.length - 1, Sort.SORT_TYPE.ASC);
     assertEquals(Arrays.toString(expected), Arrays.toString(arrayReversed));
-//    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.quick(arrayReversed, SORT_TYPE.ASC)));
-//    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.quick(arrayOrdered, SORT_TYPE.ASC)));
-//    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.quick(arrayRandom, SORT_TYPE.ASC)));
-//    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.quick(arrayRandom, SORT_TYPE.DESC)));
+//    assertEquals(Arrays.toString(expected), Arrays.toString(collection.Sort.quick(arrayReversed, collection.SORT_TYPE.ASC)));
+//    assertEquals(Arrays.toString(expected), Arrays.toString(collection.Sort.quick(arrayOrdered, collection.SORT_TYPE.ASC)));
+//    assertEquals(Arrays.toString(expected), Arrays.toString(collection.Sort.quick(arrayRandom, collection.SORT_TYPE.ASC)));
+//    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(collection.Sort.quick(arrayRandom, collection.SORT_TYPE.DESC)));
   }
 
   @Test
   void shellSort() {
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.shell(arrayReversed, SORT_TYPE.ASC)));
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.shell(arrayOrdered, SORT_TYPE.ASC)));
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.shell(arrayRandom, SORT_TYPE.ASC)));
-//    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.quick(arrayRandom, SORT_TYPE.DESC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.shell(arrayReversed, Sort.SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.shell(arrayOrdered, Sort.SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.shell(arrayRandom, Sort.SORT_TYPE.ASC)));
+//    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(collection.Sort.quick(arrayRandom, collection.SORT_TYPE.DESC)));
 
   }
 
   @Test
   void mergeSort() {
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayReversed, SORT_TYPE.ASC)));
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayOrdered, SORT_TYPE.ASC)));
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayRandom, SORT_TYPE.ASC)));
-//    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(Sort.quick(arrayRandom, SORT_TYPE.DESC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayReversed, Sort.SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayOrdered, Sort.SORT_TYPE.ASC)));
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayRandom, Sort.SORT_TYPE.ASC)));
+//    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(collection.Sort.quick(arrayRandom, collection.SORT_TYPE.DESC)));
 
   }
 

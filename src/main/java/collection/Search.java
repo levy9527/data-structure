@@ -1,3 +1,5 @@
+package collection;
+
 import java.util.function.Function;
 
 public class Search {
@@ -14,7 +16,7 @@ public class Search {
       if (isFound.apply(data[i])) {
         result = data[i];
         break;
-      };
+      }
     }
 
     return result;

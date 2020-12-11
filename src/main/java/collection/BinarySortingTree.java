@@ -1,3 +1,5 @@
+package collection;
+
 import java.util.Objects;
 import java.util.function.Consumer;
 
@@ -54,7 +56,7 @@ public class BinarySortingTree<T> {
     BinarySortingTree<T> parent = node.getParent();
     BinarySortingTree<T> left = node.getLeft();
     BinarySortingTree<T> right = node.getRight();
-    Boolean isRight = false;
+    boolean isRight = false;
     if (!Objects.isNull(parent) && node.equals(parent.getRight())) isRight = true;
 
     if (Objects.isNull(left) && Objects.isNull(right)) {

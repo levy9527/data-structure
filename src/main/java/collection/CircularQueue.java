@@ -1,3 +1,5 @@
+package collection;
+
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -11,7 +13,7 @@ public class CircularQueue<T> implements Queue<T>{
   private int head = 0;
   private int tail = 0;
 
-  CircularQueue(int capacity) {
+  public CircularQueue(int capacity) {
     if(capacity <=0) throw new RuntimeException("capacity must > 0");
 
     array = (T[])new Object[capacity];

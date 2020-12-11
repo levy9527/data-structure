@@ -1,3 +1,5 @@
+package collection;
+
 /**
  * 普通数组来实现的栈，其实 top 指标就相当于 size
  * @param <T>
@@ -7,7 +9,7 @@ public class PlainStack<T> implements Stack<T>{
   private int top = 0;
   private T[] array;
 
-  PlainStack(int capacity) {
+  public PlainStack(int capacity) {
     if (capacity <=0) throw new RuntimeException("capacity must > 0");
 
     this.capacity = capacity;

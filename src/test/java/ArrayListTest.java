@@ -1,3 +1,5 @@
+import collection.ArrayList;
+import collection.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
@@ -23,7 +25,7 @@ class ArrayListTest {
   @Order(1)
   void test() {
     assertEquals(1, arrayList.size());
-    assertEquals(new String("[1]"),Arrays.toString(arrayList.toArray()) );
+    assertEquals(("[1]"),Arrays.toString(arrayList.toArray()) );
 
   }
 
@@ -32,13 +34,13 @@ class ArrayListTest {
   void contains() {
     assertTrue(arrayList.contains(1));
 
-    Map map = new HashMap();
+    Map<String, String> map = new HashMap<>();
     map.put("key", "value");
 
-    List<Map> list = new ArrayList<>(5);
+    List<Map<String, String>> list = new ArrayList<>(5);
     list.add(map);
 
-    Map map2 = new HashMap();
+    Map<String, String> map2 = new HashMap<>();
     map2.put("key", "value");
     assertTrue(list.contains(map2));
   }
@@ -60,7 +62,7 @@ class ArrayListTest {
     arrayList.set(4, 6);
 
     assertEquals(5, arrayList.size());
-    assertEquals(new String("[0, 2, 3, 4, 6]"),Arrays.toString(arrayList.toArray()) );
+    assertEquals(("[0, 2, 3, 4, 6]"),Arrays.toString(arrayList.toArray()) );
   }
 
   @Test
@@ -95,12 +97,12 @@ class ArrayListTest {
     arrayList.insert(2, 2);
 
     assertEquals(4, arrayList.size());
-    assertEquals(new String("[0, 1, 2, 3]"),Arrays.toString(arrayList.toArray()) );
+    assertEquals(("[0, 1, 2, 3]"),Arrays.toString(arrayList.toArray()) );
 
     arrayList.insert(4, 4);
     arrayList.insert(4, 5);
     assertEquals(5, arrayList.size());
-    assertEquals(new String("[0, 1, 2, 3, 4]"),Arrays.toString(arrayList.toArray()) );
+    assertEquals(("[0, 1, 2, 3, 4]"),Arrays.toString(arrayList.toArray()) );
   }
 
 }

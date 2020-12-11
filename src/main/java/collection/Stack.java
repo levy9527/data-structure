@@ -1,3 +1,5 @@
+package collection;
+
 public interface Stack<T> {
   boolean push(T element);
 

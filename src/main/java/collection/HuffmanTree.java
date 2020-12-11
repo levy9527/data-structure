@@ -1,3 +1,5 @@
+package collection;
+
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -14,7 +16,7 @@ public class HuffmanTree {
   public HuffmanTree(int[] array) {
     if (array.length < 3) throw new RuntimeException("to construct a Huffman Tree needs at least 3 elements");
     // 先排一下序, 让数组由小到大排列
-    this.array = Sort.insertion(array, SORT_TYPE.ASC);
+    this.array = Sort.insertion(array, Sort.SORT_TYPE.ASC);
   }
 
   /**

@@ -1,7 +1,9 @@
+package collection;
+
 public class ArrayStack<T> implements Stack<T>{
   private List<T> list;
 
-  ArrayStack(int capacity) {
+  public ArrayStack(int capacity) {
     list = new ArrayList<>(capacity);
   }
 

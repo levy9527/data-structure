@@ -1,11 +1,13 @@
+package collection;
+
 import java.util.Arrays;
 
-enum SORT_TYPE {
-  ASC,
-  DESC
-}
 
 public class Sort {
+  public enum SORT_TYPE {
+    ASC,
+    DESC
+  }
   /**
    * 空间复杂度 O(1), 是原地排序算法
    * 是稳定的
@@ -14,7 +16,7 @@ public class Sort {
    * @param type 升序还是降序
    * @return 返回排序后的数组
    */
-  static int[] bubble(int[] array, SORT_TYPE type) {
+  public static int[] bubble(int[] array, SORT_TYPE type) {
     if (array.length < 2) return array;
 
     int[] result = Arrays.copyOf(array, array.length);
@@ -57,7 +59,7 @@ public class Sort {
    * @param type 升序还是降序
    * @return 返回排序后的数组
    */
-  static int[] insertion(int[] array, SORT_TYPE type) {
+  public static int[] insertion(int[] array, SORT_TYPE type) {
     if (array.length < 2) return array;
     int[] result = Arrays.copyOf(array, array.length);
 
@@ -96,7 +98,7 @@ public class Sort {
    * @param type 升序还是降序
    * @return 返回排序后的数组
    */
-  static int[] selection(int[] array, SORT_TYPE type) {
+  public static int[] selection(int[] array, SORT_TYPE type) {
     if (array.length < 2) return array;
     int[] result = Arrays.copyOf(array, array.length);
 
@@ -130,7 +132,7 @@ public class Sort {
   /**
    * 不稳定，因为存在交换
    */
-  static void quick(int[] array, int left, int right, SORT_TYPE type) {
+  public static void quick(int[] array, int left, int right, SORT_TYPE type) {
     if (array.length < 2) return;
     if (left >= right) return ;
 
@@ -151,7 +153,7 @@ public class Sort {
    * 不稳定，因为存在交换
    * @return 返回排序后的数组
    */
-  static int[] shell(int[] array, SORT_TYPE type) {
+  public static int[] shell(int[] array, SORT_TYPE type) {
     if (array.length < 2) return null;
     int[] result = Arrays.copyOf(array, array.length);
 
@@ -182,7 +184,7 @@ public class Sort {
    * 稳定，但需要占用与待排序数据等量的内存空间
    * @return 返回排序后的数组
    */
-  static int[] merge(int array[], SORT_TYPE type) {
+  public static int[] merge(int[] array, SORT_TYPE type) {
     int[] result = Arrays.copyOf(array, array.length);
     int[] temp = new int[array.length];
     // 初始子序列长度为1
@@ -202,8 +204,7 @@ public class Sort {
     }
 
     if (flag) {
-      for (int i = 0; i < temp.length; i++)
-        result[i] = temp[i];
+      result = Arrays.copyOf(temp, temp.length);
     }
 
     return result;
@@ -214,7 +215,7 @@ public class Sort {
    * 构造大顶堆进行排序
    * @return 返回排序后的数组
    */
-  static int[] heap(int[] array) {
+  public static int[] heap(int[] array) {
     if (array.length < 2) return array;
     int[] result = Arrays.copyOf(array, array.length);
     int max = result.length - 1;
