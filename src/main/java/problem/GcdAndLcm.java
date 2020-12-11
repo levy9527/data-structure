@@ -1,5 +1,8 @@
 package problem;
 
+/**
+ * 最大公约数和最小公倍数
+ */
 public class GcdAndLcm {
   /**
    * greatest common divisor

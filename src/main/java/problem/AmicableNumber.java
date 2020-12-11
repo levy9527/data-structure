@@ -3,17 +3,20 @@ package problem;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 亲密数：a的所有真因子之和等于b; b亦然，则 a与b 互为亲密数
+ */
 public class AmicableNumber {
   int calcFactorSum(int number) {
     assert number > 1;
 
     int result = 1;
-    int max = number;
+    int max = number - 1;
 
     for(int i = 2; i <= max; i++) {
       if (number % i == 0) {
         result += i;
-        if (max == number) max = number / i;
+        if (max == number - 1) max = number / i;
       }
     }
 

@@ -6,6 +6,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class AutomorphicNumber {
+  /**
+   * 自守数：平方后得到的数后几位与本身一致
+   */
   boolean isAutomorphic(int number) {
     if (number < 1) return false;
 

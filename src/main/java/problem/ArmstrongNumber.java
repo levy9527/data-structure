@@ -6,6 +6,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ArmstrongNumber {
+  /**
+   * 阿姆斯特朗数：n位数的每一位的n次方之和等于n本身
+   */
   boolean isArmstrongNumber(int number) {
     int remain = number;
     int power = 0;

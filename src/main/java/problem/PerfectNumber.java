@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 public class PerfectNumber {
+
+  /**
+   * 完数：所有真因子（包括1但不包括这个数本身的约数）之和等于本身
+   */
   boolean isPerfectNumber(int n) {
     int max = n;
     LinkedList<Integer> factors = new LinkedList<>();
