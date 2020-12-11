@@ -31,7 +31,6 @@ public class PrimeNumber {
    */
   List<Integer> eratosthenes(int number) {
     int[] numbers = new int[number + 1];
-    numbers[0] = numbers[1] = 1;
 
     // 循环次数同样是 sqrt(number)
     for (int i = 2; i * i <= number; i++) {
