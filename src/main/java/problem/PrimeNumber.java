@@ -35,6 +35,7 @@ public class PrimeNumber {
 
     // 循环次数同样是 sqrt(number)
     for (int i = 2; i * i <= number; i++) {
+      // 已经遍历过则 continue
       if (numbers[i] == 1) continue;
       for (int j = 2; i * j <= number; j++)
         numbers[i * j] = 1;
