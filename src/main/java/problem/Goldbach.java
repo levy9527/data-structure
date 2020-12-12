@@ -28,6 +28,7 @@ public class Goldbach {
           result.append("+");
           result.append(minus);
           result.append("\n");
+          // 只记录一对即可
           break;
         }
       }
