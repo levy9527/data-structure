@@ -29,19 +29,19 @@ public class PrimeNumber {
   /**
    * 返回 2~number 范围内的所有素数
    */
-  List<Integer> eratosthenes(int number) {
-    int[] numbers = new int[number + 1];
+  List<Integer> eratosthenes(int range) {
+    int[] numbers = new int[range + 1];
 
     // 循环次数同样是 sqrt(number)
-    for (int i = 2; i * i <= number; i++) {
+    for (int i = 2; i * i <= range; i++) {
       // 已经遍历过则 continue
       if (numbers[i] == 1) continue;
-      for (int j = 2; i * j <= number; j++)
+      for (int j = 2; i * j <= range; j++)
         numbers[i * j] = 1;
     }
 
     List<Integer> result = new LinkedList<>();
-    for (int i = 2; i < number; i++) {
+    for (int i = 2; i < range; i++) {
       if (numbers[i] == 0) result.add(i);
     }
 
