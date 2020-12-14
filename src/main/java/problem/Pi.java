@@ -19,9 +19,36 @@ public class Pi {
     return 4 * inside / trials;
   }
 
+  /**
+   * 公式法求近似值:
+   * pi/2 = 1 + 1/3 + 1/3 * 2/5 +  1/3 * 2/5 * 3/7
+   * 如何设置精度:
+   * - 设置最终结果的小数位
+   * - 设置公式项的阈值
+   */
+  public double formula() {
+    double result = 1;
+    int i = 1;
+    double product = 1;
+
+    while (product > 1e-16) {
+      product = 1;
+
+      for (double j = 1; j <= i; j++) {
+        product *= j / (2 * j + 1);
+      }
+
+      result += product;
+      i++;
+    }
+    return 2 * result;
+  }
+
   public static void main(String[] args) {
-    Pi p = new Pi();
-    System.out.println(p.monteCarlo(100000));
-    System.out.println(p.monteCarlo(1000000));
+    Pi pi = new Pi();
+    System.out.println(pi.monteCarlo(100000));
+    System.out.println(pi.monteCarlo(1000000));
+
+    System.out.println(pi.formula());
   }
 }
