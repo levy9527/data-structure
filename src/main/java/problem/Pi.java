@@ -31,6 +31,9 @@ public class Pi {
     int i = 1;
     double product = 1;
 
+    /**
+     * 受 double 精度限制
+     */
     while (product > 1e-16) {
       product = 1;
 
