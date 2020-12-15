@@ -42,11 +42,73 @@ public class Pi {
     return result;
   }
 
+  /**
+   * 使用数组存储数字,
+   * 把分数变成：先做乘法，再做除法
+   * @param length 表示要精确的长度
+   */
+  public String formulaEnhance(int length) {
+    if (length < 1) return "";
+
+    int[] result = new int[length];
+    int[] product = new int[length];
+    result[0] = 2;
+    product[0] = 2;
+
+    int numerator = 1, denominator = 3;
+
+    // 精度退出条件
+    for (int t = 0; t < Math.min(length,Integer.MAX_VALUE); t++) {
+      int carry = 0;
+
+      // 由（数字的）低位到高位进行乘法
+      for (int i = length - 1; i >= 0; i--) {
+        int temp = product[i] * numerator + carry;
+        product[i] = temp % 10;
+        carry = temp / 10;
+      }
+
+      // 由（数字的）高位到低位进行除法
+      carry = 0;
+      for (int i = 0; i < length; i++) {
+        int temp = product[i] + carry * 10;
+        product[i] = temp / denominator;
+        carry = temp % denominator;
+      }
+
+      // 加法及进位
+      carry = 0;
+      for (int i = length -1; i >= 0; i--) {
+        // 程序逻辑上 i = 0 时，进位丢失了；但实际上不会出现这种情况
+        int temp = result[i] + product[i] + carry;
+        result[i] = temp % 10;
+        carry = temp / 10;
+      }
+
+      numerator++;
+      denominator +=2;
+
+    }
+
+    StringBuilder builder = new StringBuilder();
+    builder.append(result[0]);
+    builder.append('.');
+
+    for (int i = 1; i < length; i++) {
+      if (i > 2 && (i - 1) % 10 == 0) builder.append(' ');
+      builder.append(result[i]);
+    }
+
+    return builder.toString();
+  }
+
   public static void main(String[] args) {
     Pi pi = new Pi();
     System.out.println(pi.monteCarlo(100000));
     System.out.println(pi.monteCarlo(1000000));
 
     System.out.println(pi.formula());
+
+    System.out.println(pi.formulaEnhance(1000));
   }
 }
