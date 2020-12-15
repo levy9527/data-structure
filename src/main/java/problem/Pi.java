@@ -22,29 +22,24 @@ public class Pi {
   /**
    * 公式法求近似值:
    * pi/2 = 1 + 1/3 + 1/3 * 2/5 +  1/3 * 2/5 * 3/7
+   * 关键思路：寻找数列 n 与 n+1 之间的规律，则：V(n + 1) = V(n) * 分子/分母，由此可以设置一个变量作为中间结果随着循环而变化
    * 如何设置精度:
    * - 设置最终结果的小数位
    * - 设置公式项的阈值
    */
   public double formula() {
-    double result = 1;
-    int i = 1;
-    double product = 1;
+    double result = 2;
+    double product = 2;
+    double numerator = 1, denominator = 3;
 
-    /**
-     * 受 double 精度限制
-     */
+    // 受 double 精度限制
     while (product > 1e-16) {
-      product = 1;
-
-      for (double j = 1; j <= i; j++) {
-        product *= j / (2 * j + 1);
-      }
-
+      product *= numerator/denominator;
       result += product;
-      i++;
+      numerator++;
+      denominator += 2;
     }
-    return 2 * result;
+    return result;
   }
 
   public static void main(String[] args) {
