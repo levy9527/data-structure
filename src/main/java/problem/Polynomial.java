@@ -39,6 +39,26 @@ class Term {
     this.positive = positive;
   }
 
+  /**
+   * get the sum of all variable's exponent
+   */
+  public int getDegree() {
+    int sum = 0;
+    for (Variable variable : variables) {
+      sum += variable.getExponent();
+    }
+    return sum;
+  }
+
+  public int getLargestExponent() {
+    int exponent = 0;
+    for (Variable variable : variables) {
+      int e = variable.getExponent();
+      if (e > exponent) exponent = e;
+    }
+    return exponent;
+  }
+
   public int getConstant() {
     return constant;
   }
@@ -68,6 +88,7 @@ public class Polynomial {
 
   Polynomial(Term[] terms) {
     this.terms = terms;
+    standardForm();
   }
 
   public Polynomial add(Polynomial polynomial) {
@@ -78,7 +99,22 @@ public class Polynomial {
     return null;
   }
 
-  // standard form
+  /**
+   * degree 最大的在前, 冒泡排序
+   * 当 degree 相同时，让单个 variable 的 exponent 最大的在前，如：5y^3 + 4xy^2
+   */
+  private void standardForm() {
+    for (int i = 0; i < terms.length - 1; i++) {
+     for (int j = 0; j < terms.length - 1 - i; j++) {
+       if (terms[j].getDegree() < terms[j + 1].getDegree() ||
+         terms[j].getLargestExponent() < terms[j + 1].getLargestExponent()) {
+         Term tmp = terms[j];
+         terms[j] = terms[j + 1];
+         terms[j + 1] = tmp;
+       }
+     }
+    }
+  }
 
   @Override
   public String toString(){
@@ -125,16 +161,5 @@ public class Polynomial {
 
   public void setTerms(Term[] terms) {
     this.terms = terms;
-  }
-
-  public static void main(String[] args) {
-    Term t1 = new Term(4,
-      new Variable[]{new Variable('x', 1), new Variable('y', 2)},
-      true);
-    Term t2 = new Term(3, new Variable[]{new Variable('x', 1)}, true);
-    Term t3 = new Term(5, new Variable[]{}, false);
-
-    Polynomial polynomial = new Polynomial(new Term[]{t1, t2, t3});
-    System.out.println(polynomial);
   }
 }
