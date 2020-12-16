@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PolynomialTest {
+  Term zero = new Term(0, new Variable[]{}, true);
   Term five = new Term(5, new Variable[]{}, false);
   Term x = new Term(3, new Variable[]{new Variable('x', 1)}, true);
   Term xy2 = new Term(4,
@@ -20,14 +21,15 @@ class PolynomialTest {
     assertEquals(3, xy2.getDegree());
     assertEquals(1, x.getDegree());
     assertEquals(0, five.getDegree());
+    assertEquals(0, zero.getDegree());
   }
 
   @Test
   void Polynomial_standardForm() {
-    Polynomial polynomial = new Polynomial(new Term[]{xy2, x, five});
-    assertEquals("4xy^2 + 3x - 5", polynomial.toString());
+    assertEquals("4xy^2 + 3x - 5", new Polynomial(new Term[]{xy2, x, five}).toString());
     assertEquals("5y^3 + 4xy^2 + 3x - 5", new Polynomial(new Term[]{xy2, x, five, y3}).toString());
     assertEquals("7x^2y^2 + 5y^3 + 4xy^2", new Polynomial(new Term[]{xy2, y3, x2y2}).toString());
+    assertEquals("0", new Polynomial(new Term[]{zero}).toString());
   }
 
 }

@@ -91,6 +91,8 @@ public class Polynomial {
     standardForm();
   }
 
+  // find like terms
+  // add constant
   public Polynomial add(Polynomial polynomial) {
     return null;
   }
@@ -135,16 +137,17 @@ public class Polynomial {
         result.append(term.isPositive() ? plus : minus);
       }
 
-      // constant 为 1 不显示系数
-      if (term.getConstant() > 1)
+      // constant 为 1 不显示系数, 但 0 却还是要显示的
+      if (term.getConstant() != 1)
         result.append(term.getConstant());
 
       for (Variable variable : term.getVariables()) {
+        // exponent 为 0 则相当于常量 1，跳过
         if (variable.getExponent() == 0) continue;
 
-        // exponent 为 1 不显示指数
         result.append(variable.getName());
 
+        // exponent 大于 1 才显示指数
         if (variable.getExponent() > 1) {
           result.append('^');
           result.append(variable.getExponent());
