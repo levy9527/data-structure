@@ -1,5 +1,7 @@
 package problem;
 
+import java.util.ArrayList;
+
 // terms[]: constant variables: name, exponent
 class Variable {
   private char name;
@@ -31,12 +33,14 @@ class Variable {
 class Term {
   private int constant;
   private Variable[] variables;
-  private boolean positive;
 
-  Term(int constant, Variable[] variables, boolean positive) {
+  Term(int constant, Variable[] variables) {
     this.constant = constant;
     this.variables = variables;
-    this.positive = positive;
+  }
+
+  public boolean isLikeTerm(Term term) {
+    return this.toString().equals(term.toString());
   }
 
   /**
@@ -59,6 +63,16 @@ class Term {
     return exponent;
   }
 
+  @Override
+  public String toString() {
+    StringBuilder result = new StringBuilder();
+    for (Variable variable : variables) {
+      result.append(variable.getName());
+      result.append(variable.getExponent());
+    }
+    return result.toString();
+  }
+
   public int getConstant() {
     return constant;
   }
@@ -75,13 +89,6 @@ class Term {
     this.variables = variables;
   }
 
-  public boolean isPositive() {
-    return positive;
-  }
-
-  public void setPositive(boolean positive) {
-    this.positive = positive;
-  }
 }
 public class Polynomial {
   private Term[] terms;
@@ -92,9 +99,45 @@ public class Polynomial {
   }
 
   // find like terms
-  // add constant
+    // t1::forEach compareTo(t2::forEach) 判断 variable+exponent 的字符串 equals
+    // perf? 匹配后，把 t2 中的元素的去掉
+  // calc constant
+  // standard form
   public Polynomial add(Polynomial polynomial) {
-    return null;
+    Term[] compares = polynomial.getTerms();
+    ArrayList<Term> result = new ArrayList<>();
+    int[] hits = new int[compares.length];
+
+    for (int i = 0; i < terms.length; i++) {
+      Term term = terms[i];
+      result.add(term);
+
+      for (int j = 0; j < compares.length; j++) {
+        if (term.isLikeTerm(compares[j])) {
+          hits[j] = 1;
+          int sum = term.getConstant() + compares[j].getConstant();
+
+          if (sum == 0) {
+            result.remove(term);
+          }
+          else {
+            term.setConstant(sum);
+          }
+          break;
+        }
+      }
+    }
+
+    for (int j = 0; j < compares.length; j++) {
+      if (hits[j] == 1) continue;
+      result.add(compares[j]);
+    }
+
+    // https://stackoverflow.com/questions/9572795/convert-list-to-array-in-java
+    terms = result.toArray(new Term[0]);
+    standardForm();
+
+    return this;
   }
 
   public Polynomial subtract() {
@@ -131,15 +174,17 @@ public class Polynomial {
       // 第一个要特殊处理
       if (i == 0) {
         // 不用显示 + ，但要显示 -
-        if (!term.isPositive()) result.append(minus.trim());
+        if (term.getConstant() < 0) result.append(minus.trim());
       }
       else {
-        result.append(term.isPositive() ? plus : minus);
+        result.append(term.getConstant() >= 0 ? plus : minus);
       }
 
       // constant 为 1 不显示系数, 但 0 却还是要显示的
-      if (term.getConstant() != 1)
-        result.append(term.getConstant());
+      if (term.getConstant() != 1) {
+        // 前面已经用过 +/- 号了，此时要取绝对值
+        result.append(Math.abs(term.getConstant()));
+      }
 
       for (Variable variable : term.getVariables()) {
         // exponent 为 0 则相当于常量 1，跳过
