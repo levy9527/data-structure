@@ -200,7 +200,11 @@ public class Polynomial {
       }
     }
 
-    return result.toString();
+    String str = result.toString();
+
+    // classic problem
+//    return str == "" ? "0" : str;
+    return str.equals("") ? "0" : str;
   }
 
   public Term[] getTerms() {
