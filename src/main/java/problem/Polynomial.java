@@ -1,6 +1,7 @@
 package problem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 // terms[]: constant variables: name, exponent
 class Variable {
@@ -109,7 +110,7 @@ public class Polynomial {
     int[] hits = new int[compares.length];
 
     for (int i = 0; i < terms.length; i++) {
-      Term term = terms[i];
+      Term term = new Term(terms[i].getConstant(), terms[i].getVariables());
       result.add(term);
 
       for (int j = 0; j < compares.length; j++) {
@@ -140,8 +141,18 @@ public class Polynomial {
     return this;
   }
 
-  public Polynomial subtract() {
-    return null;
+  public Polynomial subtract(Polynomial polynomial) {
+    // 对 terms 里的 constant 取反
+    // - attention: 不应该修改原对象值
+    List<Term> copyTerms = new ArrayList<>();
+    for (Term term : polynomial.getTerms()) {
+      Term copy = new Term(term.getConstant() * -1, term.getVariables());
+      copyTerms.add(copy);
+    }
+
+    Polynomial target = new Polynomial(copyTerms.toArray(new Term[0]));
+    this.add(target);
+    return this;
   }
 
   /**

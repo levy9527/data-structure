@@ -58,9 +58,19 @@ class PolynomialTest {
     assertEquals("0", p3.add(p4).toString());
 
     System.out.println(p3.toString());
+  }
 
+  @Test
+  void Polynomial_subtract() {
+    Polynomial p1 = new Polynomial(new Term[]{xy2, x, five});
+    Polynomial p2 = new Polynomial(new Term[]{xy2, x, five});
 
+    Polynomial p3 = new Polynomial(new Term[]{five});
+    Polynomial p4 = new Polynomial(new Term[]{_five});
 
+    assertEquals("0", p1.subtract(p2).toString());
+    assertEquals("10", p3.subtract(p4).toString());
+    assertEquals("4xy^2 + 3x + 5", p2.toString());
   }
 
 }
