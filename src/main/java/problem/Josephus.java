@@ -32,6 +32,7 @@ class Node {
   }
 }
 
+// https://en.wikipedia.org/wiki/Josephus_problem#Solution
 public class Josephus {
   private int total;
   private int countTo;
