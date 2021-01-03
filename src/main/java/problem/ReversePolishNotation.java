@@ -32,6 +32,8 @@ public class ReversePolishNotation {
 
     Deque<Character> stack = new LinkedList<>();
 
+    boolean isPrevNumber = false;
+
     for (int i = 0; i < expression.length(); i++) {
       char ch = expression.charAt(i);
       // 过滤空格
@@ -44,16 +46,26 @@ public class ReversePolishNotation {
           builder.append(stack.pollFirst());
         }
         stack.offerFirst(ch);
+
+        if (isPrevNumber) {
+          builder.append(',');
+        }
+        isPrevNumber = false;
       }
       else if (ch == '(') {
+        isPrevNumber = false;
         stack.offerFirst(ch);
       }
       else if (ch == ')') {
+        isPrevNumber = false;
         while (stack.peekFirst() != '(')
           builder.append(stack.pollFirst());
         stack.pollFirst();
       }
-      else builder.append(ch);
+      else {
+        isPrevNumber = true;
+        builder.append(ch);
+      }
     }
 
     // 多位数
@@ -73,22 +85,4 @@ public class ReversePolishNotation {
     System.out.println(RPN.postFix("(a+b) * (c+d)"));
     System.out.println(RPN.postFix("(12+34) * (11+5)"));
   }
-  // stack   + b+ ab+
-  // array a
-
-  // stack   * b* ab* ab* +  c+ ab*c+
-  // array a              ab*
-
-  // stack * cd+* ab+cd+*
-  // array: ab+
-
-  // 括号应该是分治，看成递归调用
-  // stack: b*a(( +( c+( )c+(
-  // sub： a*b +c
-
-  // stack: )c+b(*a( )*a(
-  // sub: b+c a*
-
-  // stack )b+a( )d+c(* * ab+cd+*
-  // sub a+b c+d => ab+ cd+
 }
