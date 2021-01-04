@@ -79,7 +79,8 @@ public class ReversePolishNotation {
   }
 
   // 关键点是：1.解析数字 2.执行运算 3.注意小数部分
-  public double eval(String postFix) {
+  public double eval(String expression) {
+    String postFix = this.postFix(expression);
     // TODO 小数部分
     String numChar = "";
     Deque<Double> numbers = new LinkedList<>();
@@ -132,8 +133,8 @@ public class ReversePolishNotation {
     System.out.println(RPN.postFix("(a+b) * (c+d)")); // a,b+c,d+*
     System.out.println(RPN.postFix("(12+34) * (11+5)")); // 12,34+11,5+*
 
-    System.out.println(RPN.eval(RPN.postFix("1 * (2+3)"))); // 5
-    System.out.println(RPN.eval(RPN.postFix("1+2/4"))); // 1.5
-    System.out.println(RPN.eval(RPN.postFix("(12+34) * (11+5)"))); // 736.0
+    System.out.println(RPN.eval("1 * (2+3)")); // 5
+    System.out.println(RPN.eval("1+2/4")); // 1.5
+    System.out.println(RPN.eval("(12+34) * (11+5)")); // 736.0
   }
 }
