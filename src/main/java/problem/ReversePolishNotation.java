@@ -79,24 +79,25 @@ public class ReversePolishNotation {
   }
 
   // 关键点是：1.解析数字 2.执行运算 3.注意小数部分
-  public long eval(String postFix) {
+  public double eval(String postFix) {
     // TODO 小数部分
     String numChar = "";
-    Deque<Long> numbers = new LinkedList<>();
+    Deque<Double> numbers = new LinkedList<>();
     boolean isPrevNumber = false;
 
     for (int i = 0; i < postFix.length(); i++) {
       char ch = postFix.charAt(i);
       if (ch == ',' || operators.contains(ch)) {
         if (isPrevNumber) {
-          long number = Long.parseLong(numChar);
+          Double number = Double.parseDouble(numChar);
           numbers.offerFirst(number);
         }
 
         if (ch != ',') {
-          long x = numbers.size() > 0 ? numbers.pollFirst() : 0;
-          long y = numbers.size() > 0 ? numbers.pollFirst() : 0;
-          long result = 0;
+          // 注意后进先出
+          double y = numbers.size() > 0 ? numbers.pollFirst() : 0;
+          double x = numbers.size() > 0 ? numbers.pollFirst() : 0;
+          double result = 0;
 
           if (ch == '+') result = x + y;
           else if (ch == '-') result = x - y;
@@ -131,6 +132,8 @@ public class ReversePolishNotation {
     System.out.println(RPN.postFix("(a+b) * (c+d)")); // a,b+c,d+*
     System.out.println(RPN.postFix("(12+34) * (11+5)")); // 12,34+11,5+*
 
-    System.out.println(RPN.eval(RPN.postFix("(12+34) * (11+5)"))); // 12,34+11,5+*
+    System.out.println(RPN.eval(RPN.postFix("1 * (2+3)"))); // 5
+    System.out.println(RPN.eval(RPN.postFix("1+2/4"))); // 1.5
+    System.out.println(RPN.eval(RPN.postFix("(12+34) * (11+5)"))); // 736.0
   }
 }
