@@ -8,7 +8,7 @@ public class PrimeNumber {
   /**
    * 素数：除了 1 和 自身，没有别的因子
    */
-  boolean isPrimeNumber(int number) {
+  public boolean isPrimeNumber(int number) {
     // 则 2~n-1 进行求余
     if (number < 2) return false;
     boolean result = true;
@@ -29,7 +29,7 @@ public class PrimeNumber {
   /**
    * 返回 2~number 范围内的所有素数
    */
-  List<Integer> eratosthenes(int range) {
+  public List<Integer> eratosthenes(int range) {
     int[] numbers = new int[range + 1];
 
     // 循环次数同样是 sqrt(number)
@@ -48,6 +48,16 @@ public class PrimeNumber {
     return result;
   }
 
+  public long sumPrime(int range) {
+    long sum = 0;
+    List<Integer> primes = eratosthenes(range);
+
+    for (Integer prime : primes)
+      sum += prime;
+
+    return sum;
+  }
+
   public static void main(String[] args) {
     PrimeNumber primeNumber = new PrimeNumber();
     int range = 1000;
@@ -60,5 +70,8 @@ public class PrimeNumber {
 
     System.out.println("---  sieve of Eratosthenes ---");
     System.out.println(Arrays.toString(primeNumber.eratosthenes(range).toArray()));
+
+    System.out.println("--- sum of primes within 100 ---");
+    System.out.println(primeNumber.sumPrime(100));
   }
 }
