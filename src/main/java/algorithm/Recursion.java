@@ -38,10 +38,22 @@ public class Recursion {
     return toBinary(decimal / 2) + decimal % 2;
   }
 
+  public long hanoi(int disk) {
+    if (disk <= 0) return 0;
+    if (disk == 1) return 1;
+
+    return 2 * hanoi(disk - 1) + 1;
+  }
+
   public static void main(String[] args) {
     Recursion recursion = new Recursion();
     System.out.println(recursion.fibonacci(13));
     System.out.println(recursion.deposit());
     System.out.println(recursion.toBinary(121));
+
+    System.out.println("--- hanoi ---");
+    System.out.println(recursion.hanoi(2));
+    System.out.println(recursion.hanoi(3));
+    System.out.println(recursion.hanoi(8));
   }
 }
