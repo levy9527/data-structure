@@ -1,8 +1,6 @@
 package problem;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class PrimeNumber {
   /**
@@ -58,6 +56,36 @@ public class PrimeNumber {
     return sum;
   }
 
+
+  private Set<Integer> factors = new HashSet<>();
+  private List<Integer> formula = new LinkedList<>();
+
+  public Integer[] factorization(int number) {
+    List<Integer> primes = this.eratosthenes(number);
+
+    // 判断是否其因子
+    for (Integer prime : primes) {
+      if (number % prime == 0) {
+        factors.add(prime);
+        formula.add(prime);
+
+        Integer quotient = number / prime;
+
+        // 如果商也是质数，则说明已分解完毕，否则对商进行分解
+        if (primes.contains(quotient)) {
+          factors.add(quotient);
+          formula.add(quotient);
+        }
+        else {
+          this.factorization(quotient);
+        }
+        break;
+      }
+    }
+
+    return factors.toArray(new Integer[0]);
+  }
+
   public static void main(String[] args) {
     PrimeNumber primeNumber = new PrimeNumber();
     int range = 1000;
@@ -73,5 +101,24 @@ public class PrimeNumber {
 
     System.out.println("--- sum of primes within 100 ---");
     System.out.println(primeNumber.sumPrime(100));
+
+    System.out.println("--- factorization ---");
+    int number = 28;
+    System.out.println(Arrays.toString(primeNumber.factorization(number)));
+
+    if (primeNumber.formula.size() >= 2) {
+      StringBuilder stringBuilder = new StringBuilder();
+      stringBuilder.append(number);
+      stringBuilder.append('=');
+      stringBuilder.append(primeNumber.formula.get(0));
+
+      for (int i = 1; i < primeNumber.formula.size(); i++) {
+        stringBuilder.append('*');
+        stringBuilder.append(primeNumber.formula.get(i));
+      }
+
+      System.out.println(stringBuilder.toString());
+
+    }
   }
 }
