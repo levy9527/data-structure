@@ -3,18 +3,10 @@ package leetcode;
 import java.util.Objects;
 
 /**
- * Definition for singly-linked list.
- */
-class ListNode {
-  int val;
-  ListNode next;
-  ListNode(int x) { val = x; }
-}
-
-/**
  * https://leetcode-cn.com/problems/reverse-linked-list/
  */
 public class ReverseLinkedList {
+
   /**
    * 不修改原对象
    * T: O(n), S: O(n)
