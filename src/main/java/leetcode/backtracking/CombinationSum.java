@@ -6,19 +6,21 @@ import java.util.List;
 
 /**
  * https://leetcode-cn.com/problems/combination-sum/
+ * https://leetcode-cn.com/problems/combination-sum-ii/submissions/
  */
 public class CombinationSum {
   public List<List<Integer>> combinationSum(int[] candidates, int target) {
     List<List<Integer>> result = new ArrayList<>();
     List<Integer> track = new ArrayList<>();
+    boolean[] used = new boolean[candidates.length];
 
     Arrays.sort(candidates); // ascending order
-    backTracking(candidates, 0, target, track, result);
+    backTracking(candidates, 0, target, used, track, result);
 
     return result;
   }
 
-  void backTracking(int[] candidates, int beginIndex, int target, List<Integer> track, List<List<Integer>> result) {
+  void backTracking(int[] candidates, int beginIndex, int target, boolean[] used, List<Integer> track, List<List<Integer>> result) {
     if (target == 0) {
       result.add(new ArrayList<>(track));
       return;
@@ -26,11 +28,15 @@ public class CombinationSum {
 
     for (int i = beginIndex; i < candidates.length; i++) {
       int candidate = candidates[i];
+
+      if (used[i] || (i > 0 && candidates[i] == candidates[i - 1] && !used[i - 1])) continue;
       if (target - candidate < 0) break;
 
+      used[i] = true;
       track.add(candidate);
-      backTracking(candidates, i, target - candidate, track, result);
+      backTracking(candidates, i, target - candidate, used, track, result);
       track.remove(track.size() - 1);
+      used[i] = false;
     }
   }
 
