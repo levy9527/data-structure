@@ -34,6 +34,7 @@ public class CombinationSum {
 
       used[i] = true;
       track.add(candidate);
+      // 对常量数字，可以通过迭代的形式不断做减法，而不是做加法，从而减少变量
       backTracking(candidates, i, target - candidate, used, track, result);
       track.remove(track.size() - 1);
       used[i] = false;
