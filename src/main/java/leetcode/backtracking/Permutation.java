@@ -11,7 +11,7 @@ public class Permutation {
    * 给定一个 没有重复 数字的序列，返回其所有可能的全排列。
    */
   public List<List<Integer>> permute(int[] nums) {
-    List<Integer> permutes = new ArrayList<>(3);
+    List<Integer> permutes = new ArrayList<>();
     List<List<Integer>> result = new ArrayList<>();
     backTrack(nums, permutes, result);
     return result;
