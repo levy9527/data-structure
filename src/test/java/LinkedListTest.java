@@ -94,7 +94,6 @@ class LinkedListTest {
       quotient = (int) Math.floor(quotient / base);
     }
 
-    // TODO 这里不能使用 Integer ?
     Object[] array = stack.toArray();
     StringBuilder builder = new StringBuilder();
     for (int i = 0; i < array.length; i++) {

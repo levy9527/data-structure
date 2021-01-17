@@ -9,6 +9,55 @@ import java.util.Objects;
  */
 public class IsPalindrome {
   /**
+   * 通过反转右半部分链表，来比较，注意最后要把链表复原
+   * T: O(n) 遍历了 2 次，S: O(1)
+   */
+  public boolean isPalindrome(ListNode head) {
+    if (head == null || head.next == null) return true;
+
+    boolean result = true;
+    ListNode slow = head, fast = slow;
+
+    while (fast != null && fast.next != null) {
+      fast = fast.next.next;
+      slow = slow.next;
+    }
+
+    // 此时 slow 在左半的末端
+    fast = slow;
+    ListNode p = slow.next;
+    // 反转
+    while (p != null) {
+      ListNode pNext = p.next;
+      p.next = fast;
+      fast = p;
+      p = pNext;
+    }
+
+    // 此时 fast 是右边
+    p = head;
+    while (p != slow) {
+      if (p.val != fast.val) {
+        result = false;
+        break;
+      }
+      p = p.next;
+      fast = fast.next;
+    }
+
+    // 再复原链表
+    fast = slow;
+    p = slow.next;
+    while (p != null) {
+      ListNode pNext = p.next;
+      p.next = fast;
+      fast = p;
+      p = pNext;
+    }
+    return result;
+  }
+
+  /**
    * 使用数组
    * T: O(n) 遍历 1.5次 S: O(n)
    */

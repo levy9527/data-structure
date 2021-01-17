@@ -35,7 +35,9 @@ public class ReverseLinkedList {
     ListNode result = null,
       p = head;
 
+    // TODO 重点掌握，多加练习
     while (!Objects.isNull(p)) {
+      // 代码结构上形成 "顶真" 句式
       ListNode pNext = p.next;
       p.next = result;
       result = p;
