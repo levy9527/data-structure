@@ -13,10 +13,11 @@ class ListNode {
 
     builder.append(val);
     ListNode p = this;
-    while (p.next != null) {
-      p = p.next;
-      builder.append(p.val);
-    }
+//    while (p.next != null) {
+//      p = p.next;
+//      builder.append("->");
+//      builder.append(p.val);
+//    }
     return builder.toString();
   }
 }
