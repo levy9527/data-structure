@@ -47,15 +47,9 @@ public class Partition {
   }
 
   public static void main(String[] args) {
-    ListNode head = new ListNode(1);
-    ListNode p = head;
-    int[] nodes = {4,3,2,5,2};
+    int[] nodes = {1,4,3,2,5,2};
+    ListNode head = new ListNode(nodes);
 
-    for (int node : nodes) {
-      p.next = new ListNode(node);
-      p = p.next;
-    }
-
-    System.out.println(new Partition().partition(head, 3));
+    System.out.println(new Partition().partition(head, 3).print());
   }
 }
