@@ -4,6 +4,7 @@ import java.util.Objects;
 
 /**
  * https://leetcode-cn.com/problems/linked-list-cycle/
+ * https://leetcode-cn.com/problems/linked-list-cycle-ii/
  */
 public class LinkedListCycle {
   /**
