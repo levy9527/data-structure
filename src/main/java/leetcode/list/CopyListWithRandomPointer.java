@@ -9,7 +9,7 @@ import java.util.Map;
 public class CopyListWithRandomPointer {
 
   /**
-   * 空间换时间
+   * 时间换空间
    * T: O(n) S: O(1)
    */
   public ListNode copyRandomList(ListNode head) {
