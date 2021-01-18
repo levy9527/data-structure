@@ -20,11 +20,10 @@ public class CopyListWithRandomPointer {
 
     // copy value and weaves list
     while (p != null) {
-      ListNode pNext = p.next;
-      p.next = new ListNode(p.val);
-      p = p.next;
-      p.next = pNext;
-      p = p.next;
+      copy = new ListNode(p.val);
+      copy.next = p.next;
+      p.next = copy;
+      p = copy.next;
     }
 
     // random pointer
