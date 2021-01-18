@@ -31,4 +31,32 @@ public class LinkedListCycle {
 
     return result;
   }
+
+  /**
+   * 相遇后，让慢指针继续走，同时有一个指针从头节点开始走，它们会相遇在环入口处
+   */
+  public ListNode detectCycle(ListNode head) {
+    ListNode fast = head,
+      slow = head;
+
+    while (!Objects.isNull(fast) && !Objects.isNull(fast.next)) {
+      slow = slow.next;
+      fast = fast.next.next;
+
+      if (fast == slow) {
+        fast = head;
+
+        while (true) {
+          if (fast == slow) {
+            return fast;
+          }
+          fast = fast.next;
+          slow = slow.next;
+        }
+      }
+    }
+
+    return null;
+  }
+
 }
