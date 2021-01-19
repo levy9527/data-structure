@@ -4,6 +4,9 @@ package leetcode.list;
  * https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/
  */
 public class RemoveDuplicatesFromSortedList {
+  /**
+   * T: O(n), S: O(1)
+   */
   public ListNode deleteDuplicates(ListNode head) {
     ListNode dummy = new ListNode();
     dummy.next = head;

@@ -12,8 +12,7 @@ public class TreeToDoublyList {
   /**
    *
    * 注意题目要求 head.prev = tail; tail.next = head;
-   * T: O(n), S: O(n)
-   * 最差情况下，树退化为链表，递归深度达到 N，系统使用  O(N) 栈空间。
+   * T: O(n), S: O(h), h 为二叉树的高度
    */
   public BinarySortingTree treeToDoublyList(BinarySortingTree root) {
     if (root == null) return null;
