@@ -4,10 +4,10 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 public class BinarySortingTree<T> {
-  private BinarySortingTree<T> left;
-  private BinarySortingTree<T> right;
-  private BinarySortingTree<T> parent;
-  private int data;
+  public BinarySortingTree<T> left;
+  public BinarySortingTree<T> right;
+  public BinarySortingTree<T> parent;
+  public int data;
 
   public BinarySortingTree(int data) {
     this.setData(data);
