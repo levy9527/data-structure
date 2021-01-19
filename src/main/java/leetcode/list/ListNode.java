@@ -9,9 +9,13 @@ class ListNode {
   ListNode(int val) { this.val = val; }
   ListNode(int val, ListNode next) { this.val = val; this.next = next; }
   ListNode(int[] values) {
+    if (values.length < 1) return;
+
     ListNode p = this;
-    for (int val : values) {
-      p.next = new ListNode(val);
+    val = values[0];
+
+    for (int i = 1; i < values.length; i++) {
+      p.next = new ListNode(values[i]);
       p = p.next;
     }
   }
