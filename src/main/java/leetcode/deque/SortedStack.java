@@ -31,7 +31,15 @@ public class SortedStack {
     return data.peekFirst() == null ? -1 : data.peekFirst();
   }
 
+  public int last() {
+    return data.peekLast() == null ? -1 : data.peekLast();
+  }
+
   public boolean isEmpty() {
     return data.isEmpty();
+  }
+
+  public void remove(int val) {
+    data.remove(val);
   }
 }
