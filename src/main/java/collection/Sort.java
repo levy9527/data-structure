@@ -213,6 +213,7 @@ public class Sort {
 
   /**
    * 分治、化整为零的归并排序写法
+   * T: O(nlogn) S: O(n)
    */
   public static void mergeSort(int[] arr, int left, int right) {
     if (left < right) {

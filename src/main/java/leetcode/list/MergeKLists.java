@@ -1,17 +1,50 @@
 package leetcode.list;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 /**
  * https://leetcode-cn.com/problems/merge-k-sorted-lists/
  */
 public class MergeKLists {
+
+  /**
+   * fast
+   * T: O(kn * logk) S: O(k)
+   */
   public ListNode mergeKLists(ListNode[] lists) {
+    PriorityQueue<ListNode> heap = new PriorityQueue<>(Comparator.comparingInt(x -> x.val));
+
+    // 取链表的头一个节点，构建初始堆
+    for (ListNode node : lists) {
+      if (node != null) heap.offer(node);
+    }
+
+    ListNode dummy = new ListNode();
+    ListNode p = dummy;
+
+    while (!heap.isEmpty()) {
+      p.next = heap.poll();
+      p = p.next;
+
+      if (p.next != null)
+        heap.offer(p.next);
+    }
+
+    return dummy.next;
+  }
+
+  /**
+   * T: O(k^2 * n) S: O(1)
+   */
+  public ListNode mergeKLists_slow(ListNode[] lists) {
     if (lists.length == 2) {
       return mergeList(lists[0], lists[1]);
     }
 
     ListNode head = null;
-    for (int i = 0; i < lists.length; i++) {
-      head = mergeList(head, lists[i]);
+    for (ListNode list : lists) {
+      head = mergeList(head, list);
     }
 
     return head;
@@ -68,8 +101,7 @@ public class MergeKLists {
     lists[1] = right1;
 
     ListNode l1 = new ListNode(2);
-    ListNode l2 = new ListNode(6);
-    l1.next = l2;
+    l1.next = new ListNode(6);
     lists[2] = l1;
 
     ListNode output = new MergeKLists().mergeKLists(lists);
