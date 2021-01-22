@@ -182,6 +182,7 @@ public class Sort {
 
   /**
    * 稳定，但需要占用与待排序数据等量的内存空间
+   * @deprecated 这是化零为整的思路，比较复杂
    * @return 返回排序后的数组
    */
   public static int[] merge(int[] array, SORT_TYPE type) {
@@ -208,6 +209,37 @@ public class Sort {
     }
 
     return result;
+  }
+
+  /**
+   * 分治、化整为零的归并排序写法
+   */
+  public static void mergeSort(int[] arr, int left, int right) {
+    if (left < right) {
+      int mid = (left + right) / 2;
+      mergeSort(arr, left, mid);
+      mergeSort(arr, mid + 1, right);
+      merge(arr, left, mid, right);
+    }
+  }
+
+  private static void merge(int[] arr, int left, int mid, int right) {
+    // 假设 0 - 0, 则得到 0，显然应该 + 1 才合理
+    int[] temp = new int[right - left + 1];
+    int i = 0, j = left, k = mid + 1;
+
+    while (j <= mid && k <= right) {
+      if (arr[j] <= arr[k])
+        temp[i++] = arr[j++];
+      else
+        temp[i++] = arr[k++];
+    }
+
+    while (j <= mid) temp[i++] = arr[j++];
+    while (k <= right) temp[i++] = arr[k++];
+
+    for (i = 0; i < temp.length; i++)
+      arr[left + i] = temp[i];
   }
 
   /**

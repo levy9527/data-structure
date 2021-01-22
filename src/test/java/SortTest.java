@@ -1,18 +1,24 @@
 import collection.Sort;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SortTest {
-  private int[] arrayReversed = new int[]{10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
-  private int[] arrayOrdered = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-  private int[] arrayRandom = new int[]{10, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-  private int[] expected = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-//  @BeforeEach
-//  void init() {
-//  }
+  private int[] arrayReversed;
+  private int[] arrayOrdered;
+  private int[] arrayRandom;
+  private int[] expected;
+  @BeforeEach
+  void init() {
+    arrayReversed = new int[]{10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+    arrayOrdered = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    arrayRandom = new int[]{10, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    expected = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+  }
 
   @Test
   void bubbleSort() {
@@ -59,9 +65,16 @@ class SortTest {
 
   @Test
   void mergeSort() {
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayReversed, Sort.SORT_TYPE.ASC)));
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayOrdered, Sort.SORT_TYPE.ASC)));
-    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayRandom, Sort.SORT_TYPE.ASC)));
+//    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayReversed, Sort.SORT_TYPE.ASC)));
+//    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayOrdered, Sort.SORT_TYPE.ASC)));
+//    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.merge(arrayRandom, Sort.SORT_TYPE.ASC)));
+    Sort.mergeSort(arrayReversed, 0, arrayReversed.length - 1);
+    assertArrayEquals(expected, arrayReversed);
+
+    int[] arr = new int[]{4,1,3,9,7};
+    Sort.mergeSort(arr, 0, arr.length - 1);
+    assertArrayEquals(new int[]{1, 3, 4, 7, 9}, arr);
+
 //    assertEquals(Arrays.toString(arrayReversed), Arrays.toString(collection.Sort.quick(arrayRandom, collection.SORT_TYPE.DESC)));
 
   }
