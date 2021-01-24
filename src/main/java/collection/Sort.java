@@ -149,6 +149,23 @@ public class Sort {
 //    return result;
   }
 
+  private static int division(int[] array, int left, int right) {
+    int base = array[left];
+
+    // 从小到大排序，则先从右向左扫描找小的，再从左向右扫描找大的
+    while (left < right && array[right] > base)
+      right--;
+    array[left] = array[right];
+
+    while (left < right && array[left] < base)
+      left++;
+    array[right] = array[left];
+
+    array[left] = base;
+
+    return left;
+  }
+
   /**
    * 不稳定，因为存在交换
    * @return 返回排序后的数组
@@ -329,23 +346,6 @@ public class Sort {
 
     while (leftStart <= leftEnd) target[i++] = origin[leftStart++];
     while (rightStart <= rightEnd) target[i++] = origin[rightStart++];
-  }
-
-  private static int division(int[] array, int left, int right) {
-    int base = array[left];
-
-    // 从小到大排序，则先从右向左扫描找小的，再从左向右扫描找大的
-    while (left < right && array[right] > base)
-      right--;
-    array[left] = array[right];
-
-    while (left < right && array[left] < base)
-      left++;
-    array[right] = array[left];
-
-    array[left] = base;
-
-    return left;
   }
 
 }
