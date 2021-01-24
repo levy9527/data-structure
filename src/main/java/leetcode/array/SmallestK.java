@@ -6,6 +6,7 @@ import java.util.PriorityQueue;
 
 /**
  * https://leetcode-cn.com/problems/smallest-k-lcci/
+ * FYI: https://github.com/sisterAn/JavaScript-Algorithms/issues/73
  */
 public class SmallestK {
   /**
@@ -48,9 +49,7 @@ public class SmallestK {
 
     Arrays.sort(arr);
 
-    for (int i = 0; i < k; i++) {
-      result[i] = arr[i];
-    }
+    System.arraycopy(arr, 0, result, 0, k);
 
     return result;
   }
