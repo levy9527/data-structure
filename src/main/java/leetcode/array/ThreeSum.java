@@ -10,7 +10,7 @@ import java.util.List;
 public class ThreeSum {
 
   /**
-   * 二指针
+   * 双指针
    * T: O(n^2) S:
    */
   public List<List<Integer>> threeSum(int[] nums) {
