@@ -140,6 +140,23 @@ public class Traversal {
     return result;
   }
 
+  public List<List<Integer>> levelOrderRecursively(TreeNode root) {
+    List<List<Integer>> result = new ArrayList<>();
+    dfs(root, 0, result);
+    return result;
+  }
+
+  private void dfs(TreeNode root, int level, List<List<Integer>> result) {
+    if (root == null) return;
+    if (result.size() == level) result.add(new ArrayList<>());
+
+    if (root.left != null) dfs(root.left, level + 1, result);
+
+    result.get(level).add(root.val);
+
+    if (root.right != null) dfs(root.right, level + 1, result);
+  }
+
   /**
    * https://leetcode-cn.com/problems/vertical-order-traversal-of-a-binary-tree/
    */
@@ -153,6 +170,7 @@ public class Traversal {
     root.right = new TreeNode(2);
     root.right.left = new TreeNode(3);
 
-    new Traversal().postorderTraversal(root);
+//    new Traversal().postorderTraversal(root);
+    new Traversal().levelOrderRecursively(root);
   }
 }
