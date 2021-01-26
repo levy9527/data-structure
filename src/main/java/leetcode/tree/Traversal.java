@@ -5,6 +5,8 @@ import java.util.*;
 public class Traversal {
   /**
    * https://leetcode-cn.com/problems/binary-tree-preorder-traversal/
+   * 递归方法更快，更节省内存
+   * T: O(n) S: O(logn)
    */
   public List<Integer> preorderTraversal(TreeNode root) {
     List<Integer> result = new ArrayList<>();
@@ -34,6 +36,8 @@ public class Traversal {
 
   /**
    * https://leetcode-cn.com/problems/binary-tree-inorder-traversal/
+   * 递归方法更快，更节省内存
+   * T: O(n) S: O(logn)
    */
   public List<Integer> inorderTraversal(TreeNode root) {
     List<Integer> result = new ArrayList<>();
@@ -67,6 +71,8 @@ public class Traversal {
 
   /**
    * https://leetcode-cn.com/problems/binary-tree-postorder-traversal/
+   * 递归方法更快，更节省内存
+   * T: O(n) S: O(logn)
    */
   public List<Integer> postorderTraversal(TreeNode root) {
     List<Integer> result = new ArrayList<>();
@@ -87,6 +93,7 @@ public class Traversal {
         result.add(node.val);
         prev = node;
         stack.pollFirst();
+        // 避免再次进入遍历左节点的循环
         node = null;
       }
       else {
@@ -107,9 +114,29 @@ public class Traversal {
 
   /**
    * https://leetcode-cn.com/problems/binary-tree-level-order-traversal/
+   * T: O(n) S: O(n)
    */
   public List<List<Integer>> levelOrder(TreeNode root) {
     List<List<Integer>> result = new ArrayList<>();
+    Deque<TreeNode> queue = new ArrayDeque<>();
+
+    if (root != null) queue.offerLast(root);
+
+    while (!queue.isEmpty()) {
+      int size = queue.size();
+      List<Integer> list = new ArrayList<>();
+
+      for (int i = 0; i < size; i++) {
+        TreeNode node = queue.pollFirst();
+        list.add(node.val);
+
+        if (node.left != null) queue.offerLast(node.left);
+        if (node.right != null) queue.offerLast(node.right);
+      }
+
+      result.add(list);
+    }
+
     return result;
   }
 
