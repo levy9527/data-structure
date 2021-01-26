@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * https://leetcode-cn.com/problems/combination-sum/
- * https://leetcode-cn.com/problems/combination-sum-ii/submissions/
+ * https://leetcode-cn.com/problems/combination-sum-ii/
  */
 public class CombinationSum {
   public List<List<Integer>> combinationSum(int[] candidates, int target) {
