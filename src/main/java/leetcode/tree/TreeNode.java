@@ -16,7 +16,7 @@ public class TreeNode {
   }
 
   TreeNode(Integer[] array) {
-    if (array.length < 1) return;
+    if (array.length < 1 || array[0] == null) return;
 
     val = array[0];
     Deque<TreeNode> queue = new ArrayDeque<>();
