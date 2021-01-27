@@ -140,29 +140,58 @@ public class Traversal {
     return result;
   }
 
+  /**
+   * T: O(n) S: O(logn)
+   * 但不知为何，leetcode 上消耗内存更大，可能数据缺少准确性
+   */
   public List<List<Integer>> levelOrderRecursively(TreeNode root) {
     List<List<Integer>> result = new ArrayList<>();
-    dfs(root, 0, result);
+    levelOrderDfs(root, 0, result);
     return result;
   }
 
-  private void dfs(TreeNode root, int level, List<List<Integer>> result) {
+  private void levelOrderDfs(TreeNode root, int level, List<List<Integer>> result) {
     if (root == null) return;
     if (result.size() == level) result.add(new ArrayList<>());
 
-    if (root.left != null) dfs(root.left, level + 1, result);
+    if (root.left != null) levelOrderDfs(root.left, level + 1, result);
 
+    // 前序/中序遍历都行
     result.get(level).add(root.val);
 
-    if (root.right != null) dfs(root.right, level + 1, result);
+    if (root.right != null) levelOrderDfs(root.right, level + 1, result);
   }
+
 
   /**
    * https://leetcode-cn.com/problems/vertical-order-traversal-of-a-binary-tree/
+   * T: O(nlogn) S: O(logn)
    */
   public List<List<Integer>> verticalTraversal(TreeNode root) {
     List<List<Integer>> result = new ArrayList<>();
+    List<Location> locations = new ArrayList<>();
+    verticalDfs(root, 0, 0, locations);
+
+    Collections.sort(locations);
+
+    int prevX = Integer.MIN_VALUE;
+    for (Location location : locations) {
+      if (prevX != location.getX()) result.add(new ArrayList<>());
+
+      prevX = location.getX();
+      result.get(result.size() - 1).add(location.getVal());
+    }
+
     return result;
+  }
+
+  private void verticalDfs(TreeNode root, int x, int y, List<Location> locations) {
+    if (root == null) return;
+
+    if (root.left != null) verticalDfs(root.left, x - 1, y - 1, locations);
+    locations.add(new Location(root.val, x, y));
+
+    if (root.right != null) verticalDfs(root.right, x + 1, y - 1, locations);
   }
 
   public static void main(String[] args) {
@@ -171,6 +200,55 @@ public class Traversal {
     root.right.left = new TreeNode(3);
 
 //    new Traversal().postorderTraversal(root);
-    new Traversal().levelOrderRecursively(root);
+//    new Traversal().levelOrderRecursively(root);
+
+    Integer[] nodes = new Integer[]{0,10,1,null,null,2,4,3,5,null,null,6,null,7,9,8,null,null,null,null,11,null,null,12};
+    new Traversal().verticalTraversal(new TreeNode(nodes));
   }
+}
+
+class Location implements Comparable<Location>{
+  private int val;
+  private int x;
+  private int y;
+
+  Location(int val, int x, int y) {
+    this.val = val;
+    this.x = x;
+    this.y = y;
+  }
+
+  @Override
+  public int compareTo(Location location) {
+    if (this.getX() != location.getX())
+      return this.getX() - location.getX();
+    else if (this.getY() != location.getY())
+      return -this.getY() + location.getY();
+    return this.getVal() - location.getVal();
+  }
+
+  public int getVal() {
+    return val;
+  }
+
+  public void setVal(int val) {
+    this.val = val;
+  }
+
+  public int getX() {
+    return x;
+  }
+
+  public void setX(int x) {
+    this.x = x;
+  }
+
+  public int getY() {
+    return y;
+  }
+
+  public void setY(int y) {
+    this.y = y;
+  }
+
 }
