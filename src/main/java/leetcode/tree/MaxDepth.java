@@ -6,6 +6,7 @@ public class MaxDepth {
    *
    * https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/
    * 关键在于 遍历的同时，求 depth
+   * T: O(n) S: O(logn)
    */
   public boolean isBalanced(TreeNode root) {
     return traverse(root) != -1;
