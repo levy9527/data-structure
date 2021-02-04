@@ -4,11 +4,10 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
-/**
- * https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/
- */
 public class IsSubStructure {
   /**
+   * https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/
+   * 判断子结构
    * 使用递归，关键仍然是：递归时，做判断.
    * 关键想清楚：
    * 1. 根与子节点的要求（根不能为空，但子节点可以）
@@ -27,6 +26,24 @@ public class IsSubStructure {
     if (A.val == B.val)
       return traverse(A.left, B.left) && traverse(A.right, B.right);
 
+    return false;
+  }
+
+  /**
+   * https://leetcode-cn.com/problems/subtree-of-another-tree/
+   * 判断子树
+   * T: O(m * n)
+   * S: max(logm, logn)
+   */
+  public boolean isSubtree(TreeNode s, TreeNode t) {
+    if (s == null) return t == null;
+    // 判断根或左子树或右子树
+    return subTreeTraverse(s, t) || isSubtree(s.left, t) || isSubtree(s.right, t);
+  }
+
+  private boolean subTreeTraverse(TreeNode root, TreeNode node) {
+    if (root == null && node == null) return true;
+    if (root != null && node != null && root.val == node.val) return traverse(root.left, node.left) && traverse(root.right, node.right);
     return false;
   }
 
