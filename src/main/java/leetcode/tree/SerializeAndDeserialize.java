@@ -2,6 +2,7 @@ package leetcode.tree;
 
 /**
  * https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/
+ * 总体注意点：字符串的处理使用 StringBuilder
  */
 public class SerializeAndDeserialize {
   static String SEPARATOR = ",";
