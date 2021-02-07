@@ -19,7 +19,7 @@ class ReturnType {
 /**
  * https://leetcode-cn.com/problems/validate-binary-search-tree/
  */
-public class isBST {
+public class IsBST {
 
   /**
    * 仍是中序遍历的思路：比较当前值是否大于前一个值即可
