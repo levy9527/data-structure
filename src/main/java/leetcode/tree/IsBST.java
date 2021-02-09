@@ -20,11 +20,29 @@ class ReturnType {
  * https://leetcode-cn.com/problems/validate-binary-search-tree/
  */
 public class IsBST {
+  /**
+   * 根据定义去：根比左子树任意值大，比右子树任意值小
+   * 则以根的值，去限制左右子树，加以验证
+   */
+  public boolean isValidBST_(TreeNode root) {
+    // 根节点，无限制
+    return isValidBST_(root, null, null);
+  }
+
+  private boolean isValidBST_(TreeNode root, TreeNode min, TreeNode max) {
+    if (root == null) return true;
+
+    if (min != null && min.val >= root.val) return false;
+    if (max != null && max.val <= root.val) return false;
+
+    return isValidBST_(root.left, min, root) &&
+      isValidBST_(root.right, root, max);
+  }
 
   /**
    * 仍是中序遍历的思路：比较当前值是否大于前一个值即可
    * 优势在于：使用系统栈，并且只使用一个辅助变量
-   * 注意：edge case 节点值是系统最小值，故不能依赖系统常量值（如果追求完美的话）
+   * 注意：edge case 节点值是系统最小值，故不能依赖系统常量值，而应设置 null（如果追求完美的话）
    */
   Integer prev = null;
   public boolean isValidBST(TreeNode root) {
