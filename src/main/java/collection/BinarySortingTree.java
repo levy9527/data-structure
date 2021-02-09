@@ -48,6 +48,8 @@ public class BinarySortingTree<T> {
    * 2. 只有左子节点
    * 3. 只有右子节点
    * 4. 有左右子节点(右子节点有/没有左子树）
+   *
+   * 同时还得注意，节点本身是属于左还是右子节点
    */
   public void deleteNode(int data) {
     BinarySortingTree<T> node = findNode(data);
