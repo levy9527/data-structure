@@ -48,7 +48,3 @@ public class MedianFinder {
   }
 }
 
-// 1 -> max 1
-// 2 -> min 2
-// 3 -> min 2,3
-// 0 -> max 1,0
