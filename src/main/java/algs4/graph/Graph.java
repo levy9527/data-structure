@@ -8,7 +8,7 @@ public class Graph {
   private static final int DEFAULT_CAPACITY = 10;
   private static final List<Integer> EMPTY_ARRAY = new ArrayList<>();
 
-  private int V;
+  private Set<Integer> V;
   private int E;
   private List<LinkedList<Integer>> adj;
 
@@ -21,6 +21,7 @@ public class Graph {
       }
 
       // initialize
+      V = new HashSet<>();
       adj = new ArrayList<>(lines.size());
       for (int i = 0; i <lines.size(); i++) {
         adj.add(new LinkedList<>());
@@ -38,18 +39,22 @@ public class Graph {
 
   /**
    * add edge v-x to this graph
+   * to make this method public, need to deal with IndexOutOfBoundsException
    */
-  void addEdge(Integer v, Integer w) {
+  private void addEdge(Integer v, Integer w) {
     LinkedList<Integer> vertexV = adj.get(v);
     vertexV.addFirst(w);
 
     LinkedList<Integer> vertexW = adj.get(w);
     vertexW.addFirst(v);
     E++;
+
+    V.add(v);
+    V.add(w);
   }
 
   public int V() {
-    return 0;
+    return V.size();
   }
 
   public int E() {

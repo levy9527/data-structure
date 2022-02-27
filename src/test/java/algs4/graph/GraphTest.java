@@ -1,7 +1,6 @@
 package algs4.graph;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -35,5 +34,10 @@ class GraphTest {
   @Test
   void edge() {
     assertEquals(13, graph.E());
+  }
+
+  @Test
+  void vertex() {
+    assertEquals(13, graph.V());
   }
 }
