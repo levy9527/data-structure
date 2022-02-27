@@ -6,6 +6,7 @@ import java.util.*;
 
 public class Graph {
   private static final int DEFAULT_CAPACITY = 10;
+  private static final List<Integer> EMPTY_ARRAY = new ArrayList();
 
   List<LinkedList<Integer>> adj;
 
@@ -47,12 +48,17 @@ public class Graph {
     vertexW.addFirst(v);
   }
 
-  int V() {
+  public int V() {
     return 0;
   }
 
-  int E() {
+  public int E() {
     return 0;
+  }
+
+  public Iterable<Integer> adjacency(int v) {
+    if (v >= adj.size() || v < 0) return EMPTY_ARRAY;
+    return adj.get(v);
   }
 
   @Override
