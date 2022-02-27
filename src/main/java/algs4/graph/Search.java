@@ -4,11 +4,13 @@ package algs4.graph;
 public class Search {
   private boolean[] marked;
   private int count;
+  private boolean connected;
 
   public Search(Graph G, int source) {
     marked = new boolean[G.V()];
 
     dfs(G, source);
+    connected = count == G.V();
   }
 
   private void dfs(Graph G, int v) {
@@ -18,6 +20,15 @@ public class Search {
     for (int w : G.adjacency(v)) {
       if (!marked[w]) dfs(G, w);
     }
+  }
+
+  /**
+   * Strictly speaking, this API should be part of Graph, because `connected` is a natural characteristic of Graph,
+   * and the parameter `source` takes no effect to the result of `connected`.
+   * The reason that this API is written here is just to save computation, as `Search` has already done dfs.
+   */
+  public boolean connected() {
+    return connected;
   }
 
   /**

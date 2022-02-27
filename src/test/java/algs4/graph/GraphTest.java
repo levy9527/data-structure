@@ -49,5 +49,8 @@ class GraphTest {
 
     assertEquals(7, new Search(graph, 0).count());
     assertEquals(4, new Search(graph, 9).count());
+
+    assertEquals(false, new Search(graph, 0).connected());
+    assertEquals(false, new Search(graph, 9).connected());
   }
 }
