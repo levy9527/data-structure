@@ -6,9 +6,11 @@ import java.util.*;
 
 public class Graph {
   private static final int DEFAULT_CAPACITY = 10;
-  private static final List<Integer> EMPTY_ARRAY = new ArrayList();
+  private static final List<Integer> EMPTY_ARRAY = new ArrayList<>();
 
-  List<LinkedList<Integer>> adj;
+  private int V;
+  private int E;
+  private List<LinkedList<Integer>> adj;
 
   Graph(String filename) {
     try {
@@ -34,9 +36,6 @@ public class Graph {
     }
   }
 
-  Graph() {
-  }
-
   /**
    * add edge v-x to this graph
    */
@@ -46,6 +45,7 @@ public class Graph {
 
     LinkedList<Integer> vertexW = adj.get(w);
     vertexW.addFirst(v);
+    E++;
   }
 
   public int V() {
@@ -53,7 +53,7 @@ public class Graph {
   }
 
   public int E() {
-    return 0;
+    return E;
   }
 
   public Iterable<Integer> adjacency(int v) {

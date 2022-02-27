@@ -31,4 +31,9 @@ class GraphTest {
     assertEquals(expected, graph.adjacency(-1));
     assertEquals(expected, graph.adjacency(Integer.MAX_VALUE));
   }
+
+  @Test
+  void edge() {
+    assertEquals(13, graph.E());
+  }
 }
