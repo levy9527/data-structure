@@ -40,4 +40,14 @@ class GraphTest {
   void vertex() {
     assertEquals(13, graph.V());
   }
+
+  @Test
+  void search() {
+    assertEquals(true, new Search(graph, 0).marked(1));
+    assertEquals(true, new Search(graph, 0).marked(3));
+    assertEquals(false, new Search(graph, 0).marked(9));
+
+    assertEquals(7, new Search(graph, 0).count());
+    assertEquals(4, new Search(graph, 9).count());
+  }
 }
