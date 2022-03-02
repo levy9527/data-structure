@@ -53,4 +53,18 @@ class GraphTest {
     assertEquals(false, new Search(graph, 0).connected());
     assertEquals(false, new Search(graph, 9).connected());
   }
+
+  @Test
+  void dfsPaths() {
+    DepthFirstPaths depthFirstPaths = new DepthFirstPaths(graph, 0);
+
+    assertEquals(true, depthFirstPaths.hasPathTo(1));
+    assertEquals(true, depthFirstPaths.hasPathTo(6));
+    assertEquals(false, depthFirstPaths.hasPathTo(7));
+    assertEquals(false, depthFirstPaths.hasPathTo(9));
+    assertEquals("[0, 6, 4, 5]", depthFirstPaths.pathTo(5).toString());
+    assertEquals("[0, 2]", depthFirstPaths.pathTo(2).toString());
+
+    assertEquals(true, new DepthFirstPaths(graph, 9).hasPathTo(10));
+  }
 }

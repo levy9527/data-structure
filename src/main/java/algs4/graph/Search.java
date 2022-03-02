@@ -24,7 +24,7 @@ public class Search {
 
   /**
    * Strictly speaking, this API should be part of Graph, because `connected` is a natural characteristic of Graph,
-   * and the parameter `source` takes no effect to the result of `connected`.
+   * and the parameter `source` takes no effect on the result of `connected`.
    * The reason that this API is written here is just to save computation, as `Search` has already done dfs.
    */
   public boolean connected() {
