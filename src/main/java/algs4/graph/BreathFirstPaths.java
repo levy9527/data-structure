@@ -5,6 +5,9 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * it can find the shortest path
+ */
 public class BreathFirstPaths implements Paths{
   private boolean[] marked;
   private int[] edgeTo;
