@@ -82,4 +82,14 @@ class GraphTest {
     assertEquals("[0, 5]", breathFirstPaths.pathTo(5).toString());
     assertEquals("[0, 5, 3]", breathFirstPaths.pathTo(3).toString());
   }
+
+  @Test
+  void connectedComponents() {
+    ConnectedComponents cc = new ConnectedComponents(graph);
+
+    assertEquals(3, cc.count());
+    assertEquals(2, cc.id(9));
+    assertTrue(cc.isConnected(0, 1));
+    assertFalse(cc.isConnected(0, 9));
+  }
 }
