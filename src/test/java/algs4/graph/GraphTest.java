@@ -62,9 +62,24 @@ class GraphTest {
     assertEquals(true, depthFirstPaths.hasPathTo(6));
     assertEquals(false, depthFirstPaths.hasPathTo(7));
     assertEquals(false, depthFirstPaths.hasPathTo(9));
-    assertEquals("[0, 6, 4, 5]", depthFirstPaths.pathTo(5).toString());
+
     assertEquals("[0, 2]", depthFirstPaths.pathTo(2).toString());
+    assertEquals("[0, 6, 4, 5]", depthFirstPaths.pathTo(5).toString());
+    assertEquals("[0, 6, 4, 5, 3]", depthFirstPaths.pathTo(3).toString());
 
     assertEquals(true, new DepthFirstPaths(graph, 9).hasPathTo(10));
+  }
+
+  @Test
+  void bfsPaths() {
+    BreathFirstPaths breathFirstPaths = new BreathFirstPaths(graph, 0);
+    assertEquals(true, breathFirstPaths.hasPathTo(1));
+    assertEquals(true, breathFirstPaths.hasPathTo(6));
+    assertEquals(false, breathFirstPaths.hasPathTo(7));
+    assertEquals(false, breathFirstPaths.hasPathTo(9));
+
+    assertEquals("[0, 2]", breathFirstPaths.pathTo(2).toString());
+    assertEquals("[0, 5]", breathFirstPaths.pathTo(5).toString());
+    assertEquals("[0, 5, 3]", breathFirstPaths.pathTo(3).toString());
   }
 }
