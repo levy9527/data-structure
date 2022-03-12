@@ -92,4 +92,11 @@ class GraphTest {
     assertTrue(cc.isConnected(0, 1));
     assertFalse(cc.isConnected(0, 9));
   }
+
+  @Test
+  void detectCycle() {
+    Cyclic cyclic = new Cyclic(graph);
+
+    assertTrue(cyclic.isCyclic());
+  }
 }
