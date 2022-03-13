@@ -12,8 +12,8 @@ public class Bipartite {
 
   // index denotes vertex, value denotes color
   // ✅ next(adjacency) index's color should base on its previous one, being opposite
-  private boolean color[];
-  private boolean marked[];
+  private boolean[] color;
+  private boolean[] marked;
   private boolean twoColorable;
 
   public Bipartite(Graph G) {

@@ -6,7 +6,7 @@ package algs4.graph;
 // But the problem is, dfs has revisited mechanism to search
 // How can we distinguish cyclic revisit from normal case?
 public class Cyclic {
-  private boolean marked[];
+  private boolean[] marked;
   private boolean cyclic;
 
   public Cyclic(Graph G) {
