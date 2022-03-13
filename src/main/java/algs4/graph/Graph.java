@@ -11,6 +11,10 @@ public class Graph {
   private int E;
   private List<LinkedList<Integer>> adj;
 
+  public Graph(int numberOfVertices) {
+    initContainer(numberOfVertices);
+  }
+
   public Graph(String filename) {
     try {
       Scanner scanner = new Scanner(new File(filename));
@@ -19,12 +23,7 @@ public class Graph {
         lines.add(scanner.nextLine());
       }
 
-      // initialize
-      V = new HashSet<>();
-      adj = new ArrayList<>(lines.size());
-      for (int i = 0; i <lines.size(); i++) {
-        adj.add(new LinkedList<>());
-      }
+      initContainer(lines.size());
 
       for (String line : lines) {
         String[] vertices = line.split(" ");
@@ -36,11 +35,19 @@ public class Graph {
     }
   }
 
+  private void initContainer(int numberOfVertices) {
+    V = new HashSet<>();
+    adj = new ArrayList<>(numberOfVertices);
+    for (int i = 0; i < numberOfVertices; i++) {
+      adj.add(new LinkedList<>());
+    }
+  }
+
   /**
    * add edge v-x to this graph
    * to make this method public, need to deal with IndexOutOfBoundsException
    */
-  private void addEdge(Integer v, Integer w) {
+  public void addEdge(Integer v, Integer w) {
     LinkedList<Integer> vertexV = adj.get(v);
     vertexV.addFirst(w);
 

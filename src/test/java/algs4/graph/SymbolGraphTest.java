@@ -3,6 +3,7 @@ package algs4.graph;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.platform.commons.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,5 +42,17 @@ class SymbolGraphTest {
     }
 
     assertEquals(jfkAdjArrayStr, jfkAdjList.toString());
+  }
+
+  @Test
+  void index() {
+    assertEquals(-1, symbolGraph.index(""));
+    assertEquals(-1, symbolGraph.index("do not exist"));
+  }
+
+  @Test
+  void name() {
+    assertTrue(StringUtils.isBlank(symbolGraph.name(-1)));
+    assertTrue(StringUtils.isBlank(symbolGraph.name(Integer.MAX_VALUE)));
   }
 }
