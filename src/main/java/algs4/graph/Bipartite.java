@@ -29,13 +29,14 @@ public class Bipartite {
   }
 
   // What should be done to detect is two-color-able with color[] in dfs?
-  // I have no idea because I don't have test cases, and I cannot give a not two-color-able example!
+  // You'd better have test cases, giving a not two-color-able example for thinking more logically!
   private void dfs(Graph G, int v, boolean prevColor) {
     marked[v] = true;
     color[v] = !prevColor;
 
     for (int w : G.adjacency(v)) {
       if (!marked[w]) {
+        // color[w] = !color[v]; // parameter prevColor can be eliminated and line 35 can be replaced with this line
         dfs(G, w, color[v]);
       }
       // ✅ key code lies here: when revisiting, compare two adjacency vertices' color

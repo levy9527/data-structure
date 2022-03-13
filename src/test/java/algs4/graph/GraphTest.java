@@ -101,7 +101,7 @@ class GraphTest {
   }
 
   @Test
-  void twoColor() {
+  void detectBipartite() {
     assertFalse(new Bipartite(graph).isBipartite());
 
     Graph bipartite = new Graph("src/test/java/algs4/graph/bipartite.txt");
