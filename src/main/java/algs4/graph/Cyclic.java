@@ -9,7 +9,7 @@ public class Cyclic {
   private boolean marked[];
   private boolean cyclic;
 
-  Cyclic(Graph G) {
+  public Cyclic(Graph G) {
     marked = new boolean[G.V()];
 
     for (int i = 0; i < G.V(); i++) {

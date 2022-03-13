@@ -16,7 +16,7 @@ public class Bipartite {
   private boolean marked[];
   private boolean twoColorable;
 
-  Bipartite(Graph G) {
+  public Bipartite(Graph G) {
     color = new boolean[G.V()];
     marked = new boolean[G.V()];
     twoColorable = true;

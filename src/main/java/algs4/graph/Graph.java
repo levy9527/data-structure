@@ -6,13 +6,12 @@ import java.util.*;
 
 public class Graph {
   private static final int DEFAULT_CAPACITY = 10;
-  private static final List<Integer> EMPTY_ARRAY = new ArrayList<>();
 
   private Set<Integer> V;
   private int E;
   private List<LinkedList<Integer>> adj;
 
-  Graph(String filename) {
+  public Graph(String filename) {
     try {
       Scanner scanner = new Scanner(new File(filename));
       List<String> lines = new ArrayList<>(DEFAULT_CAPACITY);
@@ -62,7 +61,7 @@ public class Graph {
   }
 
   public Iterable<Integer> adjacency(int v) {
-    if (v >= adj.size() || v < 0) return EMPTY_ARRAY;
+    if (v >= adj.size() || v < 0) return Collections.EMPTY_LIST;
     return adj.get(v);
   }
 
