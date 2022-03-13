@@ -43,40 +43,40 @@ class GraphTest {
 
   @Test
   void search() {
-    assertEquals(true, new Search(graph, 0).marked(1));
-    assertEquals(true, new Search(graph, 0).marked(3));
-    assertEquals(false, new Search(graph, 0).marked(9));
+    assertTrue(new Search(graph, 0).marked(1));
+    assertTrue(new Search(graph, 0).marked(3));
+    assertFalse(new Search(graph, 0).marked(9));
 
     assertEquals(7, new Search(graph, 0).count());
     assertEquals(4, new Search(graph, 9).count());
 
-    assertEquals(false, new Search(graph, 0).connected());
-    assertEquals(false, new Search(graph, 9).connected());
+    assertFalse(new Search(graph, 0).connected());
+    assertFalse(new Search(graph, 9).connected());
   }
 
   @Test
   void dfsPaths() {
     DepthFirstPaths depthFirstPaths = new DepthFirstPaths(graph, 0);
 
-    assertEquals(true, depthFirstPaths.hasPathTo(1));
-    assertEquals(true, depthFirstPaths.hasPathTo(6));
-    assertEquals(false, depthFirstPaths.hasPathTo(7));
-    assertEquals(false, depthFirstPaths.hasPathTo(9));
+    assertTrue(depthFirstPaths.hasPathTo(1));
+    assertTrue(depthFirstPaths.hasPathTo(6));
+    assertFalse(depthFirstPaths.hasPathTo(7));
+    assertFalse(depthFirstPaths.hasPathTo(9));
 
     assertEquals("[0, 2]", depthFirstPaths.pathTo(2).toString());
     assertEquals("[0, 6, 4, 5]", depthFirstPaths.pathTo(5).toString());
     assertEquals("[0, 6, 4, 5, 3]", depthFirstPaths.pathTo(3).toString());
 
-    assertEquals(true, new DepthFirstPaths(graph, 9).hasPathTo(10));
+    assertTrue(new DepthFirstPaths(graph, 9).hasPathTo(10));
   }
 
   @Test
   void bfsPaths() {
     BreathFirstPaths breathFirstPaths = new BreathFirstPaths(graph, 0);
-    assertEquals(true, breathFirstPaths.hasPathTo(1));
-    assertEquals(true, breathFirstPaths.hasPathTo(6));
-    assertEquals(false, breathFirstPaths.hasPathTo(7));
-    assertEquals(false, breathFirstPaths.hasPathTo(9));
+    assertTrue(breathFirstPaths.hasPathTo(1));
+    assertTrue(breathFirstPaths.hasPathTo(6));
+    assertFalse(breathFirstPaths.hasPathTo(7));
+    assertFalse(breathFirstPaths.hasPathTo(9));
 
     assertEquals("[0, 2]", breathFirstPaths.pathTo(2).toString());
     assertEquals("[0, 5]", breathFirstPaths.pathTo(5).toString());
