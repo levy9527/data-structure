@@ -4,7 +4,7 @@ package algs4.graph;
 // Just remember how to detect cyclic in linked list? visited node visit again.
 // So apply the same method to graph? revisit path/node detection.
 // But the problem is, dfs has revisited mechanism to search
-// How can we distinguish normally traverse from cyclic twice visited?
+// How can we distinguish cyclic revisit from normal case?
 public class Cyclic {
   private boolean marked[];
   private boolean cyclic;

@@ -99,4 +99,12 @@ class GraphTest {
 
     assertTrue(cyclic.isCyclic());
   }
+
+  @Test
+  void twoColor() {
+    assertFalse(new Bipartite(graph).isBipartite());
+
+    Graph bipartite = new Graph("src/test/java/algs4/graph/bipartite.txt");
+    assertTrue(new Bipartite(bipartite).isBipartite());
+  }
 }
