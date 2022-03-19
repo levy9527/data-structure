@@ -48,6 +48,8 @@ public class Graph {
    * to make this method public, need to deal with IndexOutOfBoundsException
    */
   public void addEdge(Integer v, Integer w) {
+    if (hasEdge(v, w)) return;
+
     LinkedList<Integer> vertexV = adj.get(v);
     vertexV.addFirst(w);
 
@@ -57,6 +59,16 @@ public class Graph {
 
     V.add(v);
     V.add(w);
+  }
+
+  public boolean hasEdge(int v, int w) {
+    if (Objects.isNull(adj.get(v))) return false;
+
+    for (int x : adj.get(v)) {
+      if (x == w) return true;
+    }
+
+    return false;
   }
 
   public int V() {

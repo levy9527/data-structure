@@ -34,6 +34,8 @@ class GraphTest {
   @Test
   void edge() {
     assertEquals(13, graph.E());
+    assertTrue(graph.hasEdge(0, 6));
+    assertFalse(graph.hasEdge(0, 7));
   }
 
   @Test
