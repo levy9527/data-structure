@@ -64,14 +64,15 @@ public class SymbolGraph {
     return symbol2Index.containsKey(symbol);
   }
 
-  // symbol -> index, inverted index
+  // symbol -> index, forward index
   // considering contains API, maybe use map.get()?
   public int index(String symbol) {
     Integer result = symbol2Index.get(symbol);
     return Objects.nonNull(result) ? result : -1;
   }
 
-  // index -> symbol, normal index
+  // index -> symbol, inverted index
+  // why it's "inverted" ? Because it's from "forward" to "inverted": https://en.wikipedia.org/wiki/Search_engine_indexing#The_forward_index
   public String name(int index) {
     if (index < 0 || index >= index2Symbol.length) return "";
     return index2Symbol[index];
