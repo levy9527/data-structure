@@ -90,21 +90,18 @@ public class DegreesOfSeparation {
     int src = symbol2Index.get(performer);
     marked[src] = true;
 
-    List<String> movies = new ArrayList<>(10);
-    List<String> actors = new ArrayList<>(10);
 
-    List<String> item = new ArrayList<>();
+    List<String> item = new ArrayList<>(10);
     List<List<String>> result = new ArrayList<>(10);
     for (int movie : G.adjacency(src)) {
-      movies.add(index2Symbol[movie]);
+      marked[movie] = true;
+      item.add(index2Symbol[movie]);
 
       for (int actor : G.adjacency(movie)) {
         if (marked[actor]) continue;
         marked[actor] = true;
-        actors.add(index2Symbol[actor]);
+        item.add(index2Symbol[actor]);
       }
-      item.addAll(movies);
-      item.addAll(actors);
     }
 
     result.add(item);
