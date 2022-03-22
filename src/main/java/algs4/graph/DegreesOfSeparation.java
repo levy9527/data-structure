@@ -10,7 +10,7 @@ import java.util.*;
  * movie2: [performer, performer]
  * <br>
  * The process would be:
- * 1. To find the input performer's movies, using inverted index (performer -> movie)
+ * 1. To find the input performer's movies
  * 2. All the performers in the same movie with the input performer get number 1
  * 3. BFS adjacency vertices, with number increment
  */
@@ -18,6 +18,7 @@ public class DegreesOfSeparation {
   private Graph G;
   private Map<String, Integer> symbol2Index;
   private String[] index2Symbol;
+  private boolean[] marked;
 
   public DegreesOfSeparation(String filename, String delimiter) {
     try {
@@ -45,6 +46,7 @@ public class DegreesOfSeparation {
       }
 
       // now variable i represent adj array length
+      marked = new boolean[i];
       G = new Graph(i);
       for (String line : lines) {
         String[] vertices = line.split(delimiter);
@@ -84,4 +86,29 @@ public class DegreesOfSeparation {
     return index2Symbol[index];
   }
 
+  public List<List<String>> separateByDegrees(String performer) {
+    int src = symbol2Index.get(performer);
+    marked[src] = true;
+
+    List<String> movies = new ArrayList<>(10);
+    List<String> actors = new ArrayList<>(10);
+
+    List<String> item = new ArrayList<>();
+    List<List<String>> result = new ArrayList<>(10);
+    for (int movie : G.adjacency(src)) {
+      movies.add(index2Symbol[movie]);
+
+      for (int actor : G.adjacency(movie)) {
+        if (marked[actor]) continue;
+        marked[actor] = true;
+        actors.add(index2Symbol[actor]);
+      }
+      item.addAll(movies);
+      item.addAll(actors);
+    }
+
+    result.add(item);
+
+    return result;
+  }
 }

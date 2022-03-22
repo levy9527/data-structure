@@ -11,5 +11,7 @@ public class DegreesOfSeparationTest {
 
     assertTrue(graph.contains("Bacon, Kevin"));
     assertTrue(graph.contains("Woodward, Edward"));
+
+    graph.separateByDegrees("Bacon, Kevin").get(0).contains("Kidman, Nicole");
   }
 }
