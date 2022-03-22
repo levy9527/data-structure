@@ -59,13 +59,11 @@ public class SymbolGraph {
     return G;
   }
 
-  // map.get()
   public boolean contains(String symbol) {
     return symbol2Index.containsKey(symbol);
   }
 
   // symbol -> index, forward index
-  // considering contains API, maybe use map.get()?
   public int index(String symbol) {
     Integer result = symbol2Index.get(symbol);
     return Objects.nonNull(result) ? result : -1;
