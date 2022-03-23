@@ -28,6 +28,7 @@ public class SymbolGraph {
 
         lines.add(line);
 
+        // build forward index
         String[] vertices = line.split(delimiter);
         for (String vertex : vertices) {
           String trim = vertex.trim();
@@ -38,6 +39,7 @@ public class SymbolGraph {
       }
 
       // now variable i represent adj array length
+      // build inverted index
       index2Symbol = new String[i];
       for (Map.Entry<String, Integer> entry : symbol2Index.entrySet()) {
         index2Symbol[entry.getValue()] = entry.getKey();
@@ -47,7 +49,11 @@ public class SymbolGraph {
       G = new Graph(i);
       for (String line : lines) {
         String[] vertices = line.split(delimiter);
-        G.addEdge(symbol2Index.get(vertices[0].trim()), symbol2Index.get(vertices[1].trim()));
+        int v = symbol2Index.get(vertices[0].trim());
+
+        for (int j = 1; j < vertices.length; j++) {
+          G.addEdge(v, symbol2Index.get(vertices[j].trim()));
+        }
       }
 
     } catch (FileNotFoundException e) {
