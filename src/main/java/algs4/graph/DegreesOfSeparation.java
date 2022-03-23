@@ -1,8 +1,8 @@
 package algs4.graph;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * The input data structure looks like:
@@ -21,41 +21,26 @@ import java.util.*;
  * the input performer's adjacency list is the collection of related movies!
  */
 public class DegreesOfSeparation {
-  private SymbolGraph G;
+  private SymbolGraph symbolGraph;
+  private BreathFirstPaths breathFirstPaths;
 
-  public DegreesOfSeparation(String filename, String delimiter) {
-    G = new SymbolGraph(filename, delimiter);
+  public DegreesOfSeparation(String filename, String delimiter, String src) {
+    symbolGraph = new SymbolGraph(filename, delimiter);
+    if (symbolGraph.contains(src)) {
+      breathFirstPaths = new BreathFirstPaths(symbolGraph.G(), symbolGraph.index(src));
+    }
   }
 
   public SymbolGraph G() {
-    return G;
+    return symbolGraph;
   }
 
-  public List<List<String>> separateByDegrees(String performer) {
-    marked[symbol2Index.get(performer)] = true;
-    List<List<String>> result = new ArrayList<>(10);
+  public List<String> separateByDegrees(String dest) {
+    if (Objects.isNull(breathFirstPaths) || !symbolGraph.contains(dest)) return null;
 
-    Deque<Integer> deque = new ArrayDeque<>();
-    deque.offer(symbol2Index.get(performer));
-
-    while (!deque.isEmpty()) {
-      int v = deque.poll();
-      List<String> item = new ArrayList<>(10);
-
-      for (int w : G.adjacency(v)) {
-        if (marked[w]) continue;
-        marked[w] = true;
-        item.add(index2Symbol[w]);
-
-        deque.offer(w);
-
-//        for (int actor : G.adjacency(movie)) {
-//          if (marked[actor]) continue;
-//          marked[actor] = true;
-//          item.add(index2Symbol[actor]);
-//        }
-      }
-      result.add(item);
+    List<String> result = new ArrayList<>(10);
+    for (Integer i : breathFirstPaths.pathTo(symbolGraph.index(dest))) {
+      result.add(symbolGraph.name(i));
     }
 
     return result;
