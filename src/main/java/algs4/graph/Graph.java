@@ -47,8 +47,9 @@ public class Graph {
    * add edge v-x to this graph
    * to make this method public, need to deal with IndexOutOfBoundsException
    */
-  public void addEdge(Integer v, Integer w) {
-    if (hasEdge(v, w)) return;
+  public void addEdge(int v, int w) {
+    // disallow parallel or self-loop
+    if (hasEdge(v, w) || v == w) return;
 
     LinkedList<Integer> vertexV = adj.get(v);
     vertexV.addFirst(w);
