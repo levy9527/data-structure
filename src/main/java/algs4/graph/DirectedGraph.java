@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+/**
+ * Only addEdge has difference from Graph
+ * BFS and DFS are the same, without modification
+ */
 public class DirectedGraph {
   private static final int DEFAULT_CAPACITY = 10;
 
@@ -15,18 +19,13 @@ public class DirectedGraph {
     initContainer(numberOfVertices);
   }
 
-  public DirectedGraph(String filename) {
+  public DirectedGraph(int numberOfVertices, String filename) {
+    this(numberOfVertices);
+
     try {
       Scanner scanner = new Scanner(new File(filename));
-      List<String> lines = new ArrayList<>(DEFAULT_CAPACITY);
       while (scanner.hasNextLine()) {
-        lines.add(scanner.nextLine());
-      }
-
-      initContainer(lines.size());
-
-      for (String line : lines) {
-        String[] vertices = line.split(" ");
+        String[] vertices = scanner.nextLine().split(" ");
         addEdge(Integer.parseInt(vertices[0]), Integer.parseInt(vertices[1]));
       }
 
@@ -51,7 +50,6 @@ public class DirectedGraph {
     vertexV.addFirst(w);
 
     E++;
-
     V.add(v);
     V.add(w);
   }
