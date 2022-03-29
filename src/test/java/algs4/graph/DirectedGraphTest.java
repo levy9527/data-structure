@@ -29,4 +29,11 @@ class DirectedGraphTest {
     assertNotNull(directedCycle.cycle());
     assertEquals("[5, 4, 3, 5]", directedCycle.cycle().toString());
   }
+
+  @Test
+  void topological() {
+    DirectedGraph DAG = new DirectedGraph(13, "src/test/java/algs4/graph/DAG.txt");
+    Topological topological = new Topological(DAG);
+    assertEquals("[8, 7, 2, 3, 0, 6, 9, 11, 12, 10, 1, 5, 4]", topological.order().toString());
+  }
 }
