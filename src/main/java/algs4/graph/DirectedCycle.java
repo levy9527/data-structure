@@ -56,7 +56,7 @@ public class DirectedCycle {
     return hasCycle;
   }
 
-  List<Integer> cycle() {
+  Iterable<Integer> cycle() {
     return cycle;
   }
 }
