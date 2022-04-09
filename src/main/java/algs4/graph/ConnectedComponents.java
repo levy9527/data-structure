@@ -14,7 +14,7 @@ public class ConnectedComponents {
     vertex2Component = new HashMap<>(16);
     count = 0;
 
-    // based of dfs, it's easy to come up with the idea that use a loop to search the whole map
+    // based on dfs, it's easy to come up with the idea that use a loop to search the whole map
     // so the key question is: how can we know to which component a vertex belongs in a constant time?
     for (int i = 0; i < G.V(); i++) {
       if (!marked[i]) {
