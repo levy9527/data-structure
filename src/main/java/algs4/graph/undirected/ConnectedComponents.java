@@ -1,4 +1,4 @@
-package algs4.graph;
+package algs4.graph.undirected;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +9,7 @@ public class ConnectedComponents {
   Map<Integer, Integer> vertex2Component;
   int count;
 
-  ConnectedComponents(Graph G) {
+  public ConnectedComponents(Graph G) {
     marked = new boolean[G.V()];
     vertex2Component = new HashMap<>(16);
     count = 0;
@@ -38,14 +38,14 @@ public class ConnectedComponents {
    * are v and w connected
    * intrinsically compare two vertices component id
    */
-  boolean isConnected(int v, int w) {
+  public boolean isConnected(int v, int w) {
     return vertex2Component.get(v).equals(vertex2Component.get(w));
   }
 
   /**
    * number of connected components
    */
-  int count() {
+  public int count() {
     return count;
   }
 
@@ -53,7 +53,7 @@ public class ConnectedComponents {
    * component identifier for v
    * @return  between 0 and count()-1
    */
-  int id(int v) {
+  public int id(int v) {
     return vertex2Component.get(v);
   }
 }

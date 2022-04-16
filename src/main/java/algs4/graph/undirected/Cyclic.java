@@ -1,4 +1,6 @@
-package algs4.graph;
+package algs4.graph.undirected;
+
+import algs4.graph.undirected.Graph;
 
 // How to know whether a graph is cyclic or acyclic
 // Just remember how to detect cyclic in linked list? To visit visited-node again.

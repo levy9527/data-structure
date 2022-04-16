@@ -1,4 +1,7 @@
-package algs4.graph;
+package algs4.graph.undirected;
+
+import algs4.graph.Paths;
+import algs4.graph.undirected.Graph;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -8,11 +11,11 @@ import java.util.List;
 /**
  * it can find the shortest path
  */
-public class BreathFirstPaths implements Paths{
+public class BreathFirstPaths implements Paths {
   private boolean[] marked;
   private int[] edgeTo;
 
-  BreathFirstPaths(Graph G, int src) {
+  public BreathFirstPaths(Graph G, int src) {
     marked = new boolean[G.V()];
     edgeTo = new int[G.V()];
 

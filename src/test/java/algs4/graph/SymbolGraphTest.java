@@ -1,5 +1,7 @@
 package algs4.graph;
 
+import algs4.graph.undirected.Graph;
+import algs4.graph.undirected.SymbolGraph;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

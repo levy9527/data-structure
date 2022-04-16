@@ -1,4 +1,7 @@
-package algs4.graph;
+package algs4.graph.undirected;
+
+import algs4.graph.undirected.BreathFirstPaths;
+import algs4.graph.undirected.SymbolGraph;
 
 import java.util.ArrayList;
 import java.util.List;

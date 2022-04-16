@@ -1,5 +1,7 @@
-package algs4.graph;
+package algs4.graph.undirected;
 
+
+import algs4.graph.undirected.Graph;
 
 public class Search {
   private boolean[] marked;

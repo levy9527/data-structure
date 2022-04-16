@@ -1,4 +1,4 @@
-package algs4.graph;
+package algs4.graph.undirected;
 
 /**
  * Essentially, it's a problem of bipartite graph detection

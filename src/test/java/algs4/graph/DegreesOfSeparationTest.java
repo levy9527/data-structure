@@ -1,5 +1,6 @@
 package algs4.graph;
 
+import algs4.graph.undirected.DegreesOfSeparation;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,16 +1,19 @@
-package algs4.graph;
+package algs4.graph.undirected;
+
+import algs4.graph.Paths;
+import algs4.graph.undirected.Graph;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class DepthFirstPaths implements Paths{
+public class DepthFirstPaths implements Paths {
   private boolean[] marked;
   private int[] edgeTo;
 
   /**
    * calculate once, on initializing
    */
-  DepthFirstPaths(Graph G, int src) {
+  public DepthFirstPaths(Graph G, int src) {
     marked = new boolean[G.V()];
     edgeTo = new int[G.V()];
 

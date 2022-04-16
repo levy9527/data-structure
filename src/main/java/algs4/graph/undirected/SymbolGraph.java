@@ -1,4 +1,6 @@
-package algs4.graph;
+package algs4.graph.undirected;
+
+import algs4.graph.undirected.Graph;
 
 import java.io.File;
 import java.io.FileNotFoundException;
