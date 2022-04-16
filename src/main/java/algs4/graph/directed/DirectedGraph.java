@@ -1,4 +1,4 @@
-package algs4.graph;
+package algs4.graph.directed;
 
 import java.io.File;
 import java.io.FileNotFoundException;

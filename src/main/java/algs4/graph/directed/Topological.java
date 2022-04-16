@@ -1,4 +1,4 @@
-package algs4.graph;
+package algs4.graph.directed;
 
 /**
  * The process is:
@@ -23,7 +23,7 @@ public class Topological {
     return ifDag;
   }
 
-  Iterable<Integer> order() {
+  public Iterable<Integer> order() {
     return order;
   }
 }

@@ -1,4 +1,4 @@
-package algs4.graph;
+package algs4.graph.directed;
 
 /**
  * The SCC api is analogous to CC
@@ -10,7 +10,7 @@ public class StronglyConnectedComponents {
   private boolean[] marked;
   private int[] id;
 
-  StronglyConnectedComponents(DirectedGraph G) {
+  public StronglyConnectedComponents(DirectedGraph G) {
     marked = new boolean[G.V()];
     id = new int[G.V()];
 
@@ -32,16 +32,16 @@ public class StronglyConnectedComponents {
     }
   }
 
-  int id(int v) {
+  public int id(int v) {
     if (v < -1 || v >= id.length) return -1;
     return id[v];
   }
 
-  int count() {
+  public int count() {
     return count;
   }
 
-  boolean isSCC (int v, int w) {
+  public boolean isSCC (int v, int w) {
     if (v < 0 || v >= id.length) return false;
     if (w < 0 || w >= id.length) return false;
 

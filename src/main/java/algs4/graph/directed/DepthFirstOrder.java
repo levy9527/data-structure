@@ -1,4 +1,4 @@
-package algs4.graph;
+package algs4.graph.directed;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

@@ -1,5 +1,9 @@
 package algs4.graph;
 
+import algs4.graph.directed.DirectedCycle;
+import algs4.graph.directed.DirectedGraph;
+import algs4.graph.directed.StronglyConnectedComponents;
+import algs4.graph.directed.Topological;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

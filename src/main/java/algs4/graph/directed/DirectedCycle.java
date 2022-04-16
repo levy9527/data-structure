@@ -1,7 +1,6 @@
-package algs4.graph;
+package algs4.graph.directed;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public class DirectedCycle {
   private boolean[] marked;
@@ -52,11 +51,11 @@ public class DirectedCycle {
     onStack[v] = false;
   }
 
-  boolean hasCycle() {
+  public boolean hasCycle() {
     return hasCycle;
   }
 
-  Iterable<Integer> cycle() {
+  public Iterable<Integer> cycle() {
     return cycle;
   }
 }
