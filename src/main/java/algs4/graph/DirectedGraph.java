@@ -77,6 +77,16 @@ public class DirectedGraph {
     return adj.get(v);
   }
 
+  public DirectedGraph reverse() {
+    DirectedGraph R = new DirectedGraph(this.V());
+    for (int v = 0; v < this.V(); v++) {
+      for (int w : adjacency(v)) {
+        R.addEdge(w, v);
+      }
+    }
+    return R;
+  }
+
   @Override
   public String toString() {
     StringBuilder result = new StringBuilder();

@@ -44,7 +44,11 @@ class DirectedGraphTest {
     assertEquals(DAG.V(), SCCDAG.count());
 
     StronglyConnectedComponents SCCTinyG = new StronglyConnectedComponents(tinyG);
-    assertNotEquals(0, SCCTinyG.count());
+    assertEquals(5, SCCTinyG.count());
     assertNotEquals(tinyG.V(), SCCTinyG.count());
+    assertTrue(SCCTinyG.isSCC(0, 5));
+    assertTrue(SCCTinyG.isSCC(7, 8));
+    assertTrue(SCCTinyG.isSCC(9, 12));
+    assertFalse(SCCTinyG.isSCC(0, 6));
   }
 }

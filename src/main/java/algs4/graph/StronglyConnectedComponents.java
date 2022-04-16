@@ -1,37 +1,50 @@
 package algs4.graph;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-
 /**
  * The SCC api is analogous to CC
- *
- * A simple solution with quadratic time complexity would be:
- * 1. forEach every vertex
- * 2. dfs(vertex) in the loop, collecting its reachability info
+ * A strongly connected component means cycle exist
+ * So DAG's SCC count == DAG.V()
  */
 public class StronglyConnectedComponents {
-  Map<Integer, Integer> index2Component;
+  private int count;
+  private boolean[] marked;
+  private int[] id;
 
   StronglyConnectedComponents(DirectedGraph G) {
-    index2Component = new HashMap<>();
+    marked = new boolean[G.V()];
+    id = new int[G.V()];
+
+    DepthFirstOrder order = new DepthFirstOrder(G.reverse());
+    for (int v : order.reversePost()) {
+      if(!marked[v]) {
+        count++;
+        dfs(G, v);
+      }
+    }
   }
 
-  boolean stronglyConnected(int v, int w) {
-    if (Objects.isNull(index2Component.get(v)) ||
-        Objects.isNull(index2Component.get(w))
-    ) return false;
+  private void dfs(DirectedGraph G, int v) {
+    marked[v] = true;
+    id[v] = count;
 
-    return index2Component.get(v).equals(index2Component.get(w));
-  }
-
-  int count() {
-
+    for (int w : G.adjacency(v)) {
+      if (!marked[w]) dfs(G, w);
+    }
   }
 
   int id(int v) {
-    Integer result = index2Component.get(v);
-    return Objects.nonNull(result) ? result : -1;
+    if (v < -1 || v >= id.length) return -1;
+    return id[v];
+  }
+
+  int count() {
+    return count;
+  }
+
+  boolean isSCC (int v, int w) {
+    if (v < 0 || v >= id.length) return false;
+    if (w < 0 || w >= id.length) return false;
+
+    return id[v] == id[w];
   }
 }
