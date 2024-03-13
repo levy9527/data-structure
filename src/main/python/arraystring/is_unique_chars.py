@@ -1,5 +1,6 @@
 # Note: HashMap can be replaced by array.
-# However, the charset is unknown, if it's unicode, you may need to allocate large amount of memory for bool list
+# However, the charset is unknown, if it's unicode, you may need to allocate large amount of memory for array
+# So the trick lies in the charset of the string.
 def is_unique_chars(str):
   dict = {}
   for c in str:
