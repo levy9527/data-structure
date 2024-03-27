@@ -85,4 +85,9 @@ class SortTest {
     assertEquals(Arrays.toString(expected), Arrays.toString(Sort.heap(arrayOrdered)));
     assertEquals(Arrays.toString(expected), Arrays.toString(Sort.heap(arrayRandom)));
   }
+
+  @Test
+  public void countingSort() {
+    assertEquals(Arrays.toString(expected), Arrays.toString(Sort.counting(arrayRandom, Sort.SORT_TYPE.ASC)));
+  }
 }

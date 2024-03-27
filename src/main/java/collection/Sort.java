@@ -197,36 +197,6 @@ public class Sort {
     return result;
   }
 
-  /**
-   * 稳定，但需要占用与待排序数据等量的内存空间
-   * @deprecated 这是化零为整的思路，比较复杂
-   * @return 返回排序后的数组
-   */
-  public static int[] merge(int[] array, SORT_TYPE type) {
-    int[] result = Arrays.copyOf(array, array.length);
-    int[] temp = new int[array.length];
-    // 初始子序列长度为1
-    int len = 1;
-    boolean flag = false;
-
-    while (len < result.length) {
-      if (!flag) {
-        mergePass(result, temp, len);
-      }
-      else {
-        mergePass(temp, result, len);
-      }
-
-      len *= 2;
-      flag = !flag;
-    }
-
-    if (flag) {
-      result = Arrays.copyOf(temp, temp.length);
-    }
-
-    return result;
-  }
 
   /**
    * 分治、化整为零的归并排序写法
@@ -314,6 +284,37 @@ public class Sort {
     }
   }
 
+  /**
+   * 稳定，但需要占用与待排序数据等量的内存空间
+   * @deprecated 这是化零为整的思路，比较复杂
+   * @return 返回排序后的数组
+   */
+  public static int[] merge(int[] array, SORT_TYPE type) {
+    int[] result = Arrays.copyOf(array, array.length);
+    int[] temp = new int[array.length];
+    // 初始子序列长度为1
+    int len = 1;
+    boolean flag = false;
+
+    while (len < result.length) {
+      if (!flag) {
+        mergePass(result, temp, len);
+      }
+      else {
+        mergePass(temp, result, len);
+      }
+
+      len *= 2;
+      flag = !flag;
+    }
+
+    if (flag) {
+      result = Arrays.copyOf(temp, temp.length);
+    }
+
+    return result;
+  }
+
   private static void mergePass(int[] origin, int[] target, int len){
     int leftStart = 0;
     while (leftStart + len < origin.length) {
@@ -346,6 +347,37 @@ public class Sort {
 
     while (leftStart <= leftEnd) target[i++] = origin[leftStart++];
     while (rightStart <= rightEnd) target[i++] = origin[rightStart++];
+  }
+
+  /**
+   * https://www.simplilearn.com/tutorials/data-structure-tutorial/counting-sort-algorithm
+   * @param array
+   * @return sorted array
+   */
+  public static int[] counting(int[] array, SORT_TYPE type) {
+    int max = findMax(array);
+    int[] counter = new int[max + 1];
+    Arrays.fill(counter, 0);
+
+    for (int i = 0; i < array.length; i++) counter[array[i]]++;
+
+    for (int i = 1; i < counter.length; i++) counter[i] += counter[i - 1] ;
+
+    int[] output = new int[array.length];
+    for (int i = array.length - 1; i >= 0; i--) {
+      int value = --counter[array[i]];
+      output[value] = array[i];
+    }
+    return output;
+  }
+
+  private static int findMax(int[] array) {
+    int max = array[0];
+
+    for (int i = 1; i < array.length; i++)
+      max = Math.max(max, array[i]);
+
+    return max;
   }
 
 }
